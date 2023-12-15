@@ -65,8 +65,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "vllur"
-      img: "https://placekitten.com/1300/600"
+      author: "jihai"
+      img: "/content/img/1.jpeg"
       tag: Post
 
 # Takes files from root folder, generates site into ./_site
