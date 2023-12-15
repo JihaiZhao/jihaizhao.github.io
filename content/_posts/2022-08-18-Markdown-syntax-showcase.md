@@ -10,7 +10,7 @@ Paragraphs are made by inserting two line breaks.
 
 Text can be **bold**, _italic_, ~~strikethrough~~ or a `keyword`.
 
-# Header 1
+# Jack in Box
 
 This is a normal paragraph following a header. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec facilisis sapien, at dapibus dui. Maecenas viverra nisi a elit ultrices imperdiet.
 
