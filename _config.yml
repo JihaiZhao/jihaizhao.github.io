@@ -1,0 +1,88 @@
+#----------------------------------------
+# GENERAL SETTINGS
+#----------------------------------------
+
+# Site title, appears in the browser tab
+title: "Magazine"
+
+# Site description in search engine
+description: "Jekyll theme for every blogger."
+
+# Language settings for html and seo
+lang: "en_GB"
+iso-lang: "en"
+
+# Production url.
+url: "https://vllur.github.io/Magazine"
+
+# Part after .com, etc. Use / if none
+baseurl: /Magazine
+
+
+#----------------------------------------
+# CONTENT VARIABLES
+#----------------------------------------
+
+# Posts, drafts and other collections in '_content' directory
+collections_dir: content
+
+# Collections
+collections:
+  img:
+    output: true
+    permaling: /:collection/:name
+
+# Index
+index_header: "Blogging with Jekyll"
+index_description: "Magazine is a theme for every blogger. By focusing on your original content, it makes sure to present your work in a modern way."
+
+# Footer
+# Available icons: link, youtube, twitter, facebook, linkedin, instagram
+footer_description: Magazine is a theme for every blogger. By focusing on your original content, it makes sure to present your work in a modern way.
+footer_socials:
+  -
+    link: "/"
+    icon: "facebook"
+  -
+    link: "/"
+    icon: "twitter"
+  -
+    link: "/"
+    icon: "instagram"
+  -
+    link: "/"
+    icon: "linkedin"
+
+#----------------------------------------
+# JEKYLL SETTINGS
+#----------------------------------------
+
+# Default variables for pages. Are in use if not overwritten
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "vllur"
+      img: "https://placekitten.com/1300/600"
+      tag: Post
+
+# Takes files from root folder, generates site into ./_site
+source: .
+destination: ./_site
+
+paginate: 4
+paginate_path: "page/:num/"
+
+# Excluding dev gem builds from website
+exclude: [vendor]
+
+# Jekyll plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-relative-links
+  - jekyll-paginate
+  - jekyll-feed
