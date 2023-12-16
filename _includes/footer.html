@@ -1,35 +1,13 @@
-<footer>
-  <div>
-    <section>
-      <h3>Latest posts</h3>
-      <ul class="footer-list-posts">
-        {%- for post in site.posts limit:2 -%}
-          <li>
-            <a href="{{- post.url | relative_url -}}">
-              <div class="footer-image" style='background-image: url("{{- post.img -}}");'></div>
-              <div>
-                <aside>{{- post.tag -}}</aside>
-                <h2>{{- post.title -}}</h2>
-                {% if post.author %}
-                <aside>{{ post.author }} &bull; {{ post.date | date_to_string }}</aside>
-                {% else %}
-                <aside>{{ post.date | date_to_string }}</aside>
-                {% endif %}
-              </div>
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </section>
-    <section>
-      <h3>{{ site.title }}</h3>
-      <p>{{ site.footer_description }}</p>
-      <ul class="footer-list-socials">
-        {%- for entry in site.footer_socials -%}
-          <li><a class="icon-{{- entry.icon -}}" href="{{- entry.link -}}"></a></li>
-        {%- endfor -%}
-      </ul>
-    </section>
-  </div>
-  <p>{{ 'now' | date: "%Y" }} &copy; <a href="{{ '/' | relative_url }}">{{ site.title }}</a>. Theme by <a href="https://vllur.github.io/" target="_blank">vllur</a>.</p>
-</footer>
+<!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    {% if site.title or site.author %}
+      <li>&copy; {{- site.title | default: site.author -}}. All rights reserved.</li>
+    {% endif %}
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div>
