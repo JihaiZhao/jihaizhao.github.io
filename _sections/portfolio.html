@@ -9,16 +9,11 @@ order: 2
   <div class="row">
     <div class="4u 12u$(mobile)">
       <div class="item">
-        {%- for _project in _projectss -%}
+        {%- for _project in _projects -%}
             {%- capture _title -%}
-                <a href="{{- _project.url | absolute_url -}}">{{- _post.title -}}</a>
+                <a href="{{- _project.url | relative_url -}}">{{- _project.title -}}</a>
             {%- endcapture -%}
-            {%- capture _subtitle -%}
-                {% if _project.author -%}{{- _project.author }} | {% endif %}
-                {{- _post.date | date_to_long_string -}}
-            {%- endcapture -%}
-            {%- capture _excerpt -%}<p>{{- _post.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
-            {%- capture _link -%}<a href="{{- _post.url | absolute_url -}}">read more</a>{%- endcapture -%}
+            {%- capture _link -%}<a href="{{- _project.url | relative_url -}}">read more</a>{%- endcapture -%}
             {%- assign _content = _excerpt | append: _link -%}
             {%- include section.html title=_title subtitle=_subtitle content=_content -%}
         {%- endfor -%}
