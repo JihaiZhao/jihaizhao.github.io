@@ -1,7 +1,7 @@
 ---
 title:  KUKA youBot Mobile Manipulation
 subtitle: Trajectory planning, Feedforward control
-layout: "page"
+layout: projects
 order: 1
 ---
 
