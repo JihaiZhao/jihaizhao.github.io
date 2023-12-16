@@ -10,11 +10,15 @@ order: 2
     <div class="4u 12u$(mobile)">
       <div class="item">
         <a href="#" class="image fit"><img src="{{ 'assets/images/pic02.jpg' | relative_url }}" alt="Ipsum Feugiat" /></a>
-        {%- capture _link -%}<a href="{{  'projects/KUKA-youBot-Mobile-Manipulation.md' | relative_url }}">KUKA-youBot-Mobile-Manipulation</a>{%- endcapture -%}
-        <!-- <header> -->
-          <!-- <h3></h3> -->
-          <!-- <a href="{{_'projects/KUKA-youBot-Mobile-Manipulation.md' | relative_url }}">KUKA-youBot-Mobile-Manipulation</a> -->
-        <!-- </header> -->
+        <div id="main">
+          {%- if page.content != "" -%}
+            {%- include section.html title=page.title photo=page.cover-photo photo-alt=page.cover-photo-alt auto-header=page.auto-header content=page.content -%}
+          {%- endif -%}
+          <!-- Posts List -->
+          {%- for _project in _projects -%}
+            {%- capture _link -%}<a href="{{- _project.url | relative_url -}}">read more</a>{%- endcapture -%}  
+          {%- endfor -%}
+        </div>      
       </div>
       <div class="item">
         <a href="#" class="image fit"><img src="{{ 'assets/images/pic03.jpg' | relative_url }}" alt="Rhoncus Semper" /></a>
