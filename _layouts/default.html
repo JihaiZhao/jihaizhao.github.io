@@ -10,5 +10,24 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<body>
 		{{- content -}}
 		{%- include footer.html -%}
+		{%- include section.html -%}
 	</body>
+</html>
+
+<html>
+
+  {% include head.html %}
+
+
+    <body id="page-top" class="index">
+
+    {% include header.html %}
+    {% include portfolio_grid.html %}
+    {% include skill.html %}
+    {% include about.html %}
+    {% include contact2.html %}
+    {% include modals.html %}
+    {% include js.html %}
+
+    </body>
 </html>
