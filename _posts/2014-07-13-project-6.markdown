@@ -6,7 +6,7 @@ short-caption: KUKA youBot
 date: 2023-12-1
 img: submarine.png
 alt: image-alt
-# project-date: April 2014
+project-date: 2023-12-1
 # client: Start Bootstrap
 category: Trajectory planning, Feedforward control
 description: The propose of this project is writing software that plans a trajectory for the end-effector of the youBot mobile manipulator (a mobile base with four mecanum wheels and a 5R robot arm), performs odometry as the chassis moves, and performs feedback control to drive the youBot to pick up a block at a specified location, carry it to a desired location, and put it down. [Github](https://github.com/JihaiZhao/KUKA-youBot-Mobile-Manipulation)
