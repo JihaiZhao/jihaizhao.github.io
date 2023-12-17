@@ -52,8 +52,8 @@ order: 2
   </div> -->
 
 
-{%- assign _posts = site.posts | sort: 'date' | reverse -%}
-{%- include header.html scrolly_nav=_posts -%}
+<!-- {%- assign _posts = site.posts | sort: 'date' | reverse -%}
+{%- include header.html scrolly_nav=_posts -%} -->
 <!-- Main -->
 <div id="main">
 	{%- if page.content != "" -%}
@@ -65,7 +65,5 @@ order: 2
 			<a href="{{- _project.url | absolute_url -}}">{{- _project.title -}}</a>
 		{%- endcapture -%}
 		{%- capture _link -%}<a href="{{- _project.url | absolute_url -}}">read more</a>{%- endcapture -%}
-		{%- assign _content = _excerpt | append: _link -%}
-		{%- include section.html title=_title subtitle=_subtitle content=_content -%}
 	{%- endfor -%}
 </div>
