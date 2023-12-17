@@ -31,8 +31,13 @@
               </li>
               {% endif %}
               {% if post.category %}
-              <li>Service:
+              <li>Skills:
                 <strong>{{ post.category }}</strong>
+              </li>
+              {% endif %}
+              {% if post.github %}
+              <li>Source Code:
+                <a href= post.github >Github</a>
               </li>
               {% endif %}
             </ul>
