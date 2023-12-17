@@ -1,18 +1,17 @@
----
-layout: default
----
-{%- include header.html -%}
+<html>
 
-<!-- Main -->
-<div id="main">
-	<!-- Post -->
-	<article class="shade-two">
-	  <div class="container">
-			<header>
-				<h2>{{- page.title -}}</h2>
-				<p>{% if page.author %}{{ page.author }}, {% endif %}{{- page.date | date_to_long_string -}}</p>
-			</header>
-	    {{- content -}}
-	  </div>
-	</article>
-</div>
+  {% include head.html %}
+
+
+    <body id="page-top" class="index">
+
+    {% include header.html %}
+    {% include portfolio_grid.html %}
+    {% include skill.html %}
+    {% include about.html %}
+    {% include contact2.html %}
+    {% include modals.html %}
+    {% include js.html %}
+
+    </body>
+</html>
