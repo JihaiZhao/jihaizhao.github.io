@@ -1,11 +1,13 @@
 ---
 layout: default
 modal-id: 5
-date: 2014-07-14
+title: RRT
+short-caption: RRT
+date: 2023-9-15
 img: safe.png
 alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Use this area of the page to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
+project-date: 2023-9-15
+category: path planning
+github: https://github.com/JihaiZhao/RRT
+description: <br><p>The propose of this project is writing software that plans a trajectory for the end-effector of the youBot mobile manipulator (a mobile base with four mecanum wheels and a 5R robot arm), performs odometry as the chassis moves, and performs feedback control to drive the youBot to pick up a block at a specified location, carry it to a desired location, and put it down.</p></br>
 ---
