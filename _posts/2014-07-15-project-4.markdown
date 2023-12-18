@@ -3,10 +3,10 @@ layout: default
 modal-id: 4
 title: Jack In a Box
 short-caption: Jack In a Box
-date: 2023-12-15
+date: 2023-12-1
 img: Jack_In_box.gif
 alt: image-alt
-project-date: 2023-12-15
+project-date: 2023-12-1
 category: Dynamics, Simulation
 github: https://github.com/JihaiZhao/Jack-In-a-Box
 description: <br><p>The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity and zero theta for 10 seconds with a time step of 0.01s.</p></br>
