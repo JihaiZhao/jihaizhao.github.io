@@ -32,10 +32,10 @@ color:
 
 # Footer settings
 footer:
-  copyright: Jihai Zhao 2023
+  copyright: Jihai Zhao
   location: Location
   social: More about Me
-  credits: Credits
+  Skills: Skills
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
