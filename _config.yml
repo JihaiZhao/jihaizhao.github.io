@@ -50,8 +50,8 @@ address:
   - line: Evanston, IL 60201
 
 # Credits content
-Skills: '<br><p>C++, Python, MATLAB</p></br>
-         <br><p>ROS, Gazebo, Git, Linux, OpenCV, MoveIt, Motion Planning, Feedback Control</p></br>'
+Skills: '<p>C++, Python, MATLAB</p>
+         <p>ROS, Gazebo, Git, Linux, OpenCV, MoveIt, Motion Planning, Feedback Control</p>'
 
 # Build settings
 markdown: kramdown
