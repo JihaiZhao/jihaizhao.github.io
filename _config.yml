@@ -46,11 +46,12 @@ social:
 
 # Postal address (add as many lines as necessary)
 address:
-  - line: Northwestern University Tech Institute.
-  - line: Evanston, IL 60208
+  - line: 1402 1/2 Central Street
+  - line: Evanston, IL 60201
 
 # Credits content
-credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
+Skills: '<br><p>C++, Python, MATLAB</p></br>
+         <br><p>ROS, Gazebo, Git, Linux, OpenCV, MoveIt, Motion Planning, Feedback Control</p></br>'
 
 # Build settings
 markdown: kramdown
