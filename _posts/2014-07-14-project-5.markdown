@@ -9,5 +9,5 @@ alt: image-alt
 project-date: 2023-9-1
 category: Path Planning
 github: https://github.com/JihaiZhao/RRT
-description: <br><p>The propose of this project is writing software that plans a trajectory for the end-effector of the youBot mobile manipulator (a mobile base with four mecanum wheels and a 5R robot arm), performs odometry as the chassis moves, and performs feedback control to drive the youBot to pick up a block at a specified location, carry it to a desired location, and put it down.</p></br>
+description: <br><p>A Rapidly-Exploring Random Tree (RRT) is a fundamental path planning algorithm in robotics. Path planning is the task of moving a robot from one location to another, while avoiding obstacles and satisfying constraints. An RRT consists of a set of vertices, which represent configurations in some domain D and edges, which connect two vertices. The algorithm randomly builds a tree in such a way that, as the number of vertices n increases to ∞, the vertices are uniformly distributed across the domain D⊂Rn.</p><br><h4><strong>Task 1<span>:</span> Simple RRT</strong></h4><p>Implement an RRT in a two-dimensional domain, D=[0,100]×[0,100]. Use an initial configuration of qinit=(50,50) and Δ=1. Plot the result for a few different values of K</p></br></br>
 ---
