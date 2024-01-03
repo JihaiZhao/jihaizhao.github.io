@@ -9,20 +9,5 @@ alt: image-alt
 project-date: 2023-12-1
 category: Dynamics, Simulation
 github: https://github.com/JihaiZhao/Jack-In-a-Box
-description: 
-<br>
-    <h4><strong>Overview</strong></h4>
-    <p>The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity and zero theta for 10 seconds with a time step of 0.01s.
-    </p>
-    <br>
-        <h4><strong>Drawing of the system</strong></h4>
-        <img class="img-responsive" src="img/me314/drawing.jpg" alt="profile-pic" />
-        <p>Frame W is the world frame, frame A is the frame of the center of box, frame B is the frame of the center of the jack. g_B1, g_B2, g_B3, g_B4 are the transformations from frame B to the four edges of the jack. </p>
-    <br>
-        <h4><strong>Calculation description</strong></h4>
-        <p>Lagrangian equation of the system <span>:</span> L = KE - V. For kinetic energy, first get the body velocity of the box by calculating their rigid body transformation to world frame. Next convert this 4 by 4 matrix to a 6 by 1 vector and last calculate KE. (I assume the center of the mass is the center of the geometry). Last, use the same method for the jack.
-        </p>
-</br>
-</br>
-</br>
+description: <br><h4><strong>Overview</strong></h4><p>The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity and zero theta for 10 seconds with a time step of 0.01s.</p><br><h4><strong>Drawing of the system</strong></h4><img class="img-responsive" src="img/me314/drawing.jpg" alt="profile-pic" /><p>Frame W is the world frame, frame A is the frame of the center of box, frame B is the frame of the center of the jack. g_B1, g_B2, g_B3, g_B4 are the transformations from frame B to the four edges of the jack. </p><br><h4><strong>Calculation description</strong></h4><p>Lagrangian equation of the system <span>:</span> L = KE - V. For kinetic energy, first get the body velocity of the box by calculating their rigid body transformation to world frame. Next convert this 4 by 4 matrix to a 6 by 1 vector and last calculate KE. (I assume the center of the mass is the center of the geometry). Last, use the same method for the jack.$\ KE = \frac{1}{2}⋅ω^T⋅I⋅ω$</p></br></br></br>
 ---
