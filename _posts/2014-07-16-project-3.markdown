@@ -8,5 +8,5 @@ img: Pen_Stealer.gif
 project-date: 2023-9-15
 category: Computer Vision, Inverse Kinematics
 github: https://github.com/JihaiZhao/Robot_arm
-description: Use the RealSense to measure the 3D location of my purple pen. I use the interbotix_xs_toolbox to control the robot. Last get the robot capturing the pen.
+description: <p>Use the RealSense to measure the 3D location of my purple pen. I use the interbotix_xs_toolbox to control the robot. Last get the robot capturing the pen.</p>
 ---
