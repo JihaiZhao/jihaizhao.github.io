@@ -5,6 +5,7 @@ title: KUKA youBot Mobile Manipulation
 short-caption: KUKA youBot Mobile Manipulation
 date: 2023-12-1
 img: Youbot_Best.gif
+youtube: https://www.youtube.com/watch?v=q7HbfBILOt4
 alt: image-alt
 project-date: 2023-12-1
 category: Trajectory planning, Feedforward control
