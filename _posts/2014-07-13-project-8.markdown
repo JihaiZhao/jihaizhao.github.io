@@ -2,10 +2,10 @@
 layout: default
 modal-id: 6
 title: EKF SLAM
-short-caption: Implementing SLAM from Scratch on Turtlebot3-burger
+short-caption: Implementing SLAM from Scratch
 date: 2024-3-1
 img: Youbot_Best.gif
-youtube: https://www.youtube.com/watch?v=q7HbfBILOt4
+youtube: https://youtu.be/oW_I_jkgkAg
 alt: image-alt
 project-date: 2024-3-1
 category: Extended Kalman Filter, SLAM, Simulation, C++
