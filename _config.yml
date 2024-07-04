@@ -50,8 +50,9 @@ address:
   - line: Evanston, IL 60201
 
 # Credits content
-Skills: '<p>C++, Python, MATLAB</p>
-         <p>ROS, Gazebo, Git, Linux, OpenCV, MoveIt, Motion Planning, Feedback Control</p>'
+Skills: '<p>Software: Python, C++, C, MATLAB/Simulink, Linux, Git, Unit Testing, CMake, TensorFlow, R, Arduino </p>
+         <p>Robotics: Robot Operating System (ROS/ROS 2), Computer Vision, OpenCV, Simultaneous Localization and Mapping(SLAM), MoveIt, Rviz, Gazebo, Intel RealSense, Robot Kinematics</p>
+         <p>Hardware: CAD (SolidWorks/Onshape), 3D Printing </p>'
 
 # Build settings
 markdown: kramdown
