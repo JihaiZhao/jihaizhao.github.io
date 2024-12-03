@@ -9,7 +9,7 @@
     <nav class="navbar">
         <a href="/.."><i class="fa fa-home" ></i></a>
     </nav>  
-    
+
     <style>
         /* Remove default padding and margin for ul */
         ul {
@@ -39,92 +39,53 @@
             of the information content in motion. Finally, I demonstrated the efficacy of this learning approach on (.......) using the 7-DoF Franka arm.
         </p>        
         <h4><strong>Video Demo</strong></h4>
-        <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <!-- <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+         -->
         
-        <p style="text-align:left;">To achieve the goal of the project, I wrote four functions:</p>
-        <ul>
-            <li>
-                <h5 style="text-align:left;">NextState</h5>
-                <ul>
-                    <li>
-                        <p style="text-align:left;"><strong>Input:</strong> The input of the function includes <code>config</code>, <code>speed</code>, <code>timestep</code>, and <code>max_speed</code>.</p>
-                        <ul>
-                            <li><strong>config:</strong> A 12-vector representing the current configuration of the robot (3 variables for the chassis configuration, 5 variables for the arm configuration, and 4 variables for the wheel angles).</li>
-                            <li><strong>speed:</strong> A 9-vector of controls indicating the wheel speeds and the arm joint speeds.</li>
-                            <li><strong>timestep:</strong> A timestep.</li>
-                            <li><strong>max_speed:</strong> A positive real value indicating the maximum angular speed of the arm joints and the wheels. Speeds outside the range are set to the nearest boundary.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p style="text-align:left;"><strong>Output:</strong> The return of the function is <code>new_config</code>.</p>
-                        <ul>
-                            <li><strong>new_config:</strong> A 12-vector representing the configuration of the robot.</li>
-                            <li>The function is based on a simple first-order Euler step, updating arm joint angles, wheel angles, and chassis configuration using odometry.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+        <br>
+        <h4>Impedance Control</h4>
+        <p>Allow user to interact with the robot arm and feel wightless when moving the arm</p>
+        <p>Talk about the equipment we used, the hardware, three different impedance modes we implemented, the graphs of comparison, and our conclusion.</p>
+
+        <br>
     
-            <li>
-                <h5 style="text-align:left;">TrajectoryGenerator</h5>
-                <ul>
-                    <li>
-                        <p style="text-align:left;"><strong>Input:</strong> The function takes <code>Tse_initial</code>, <code>Tsc_initial</code>, <code>Tsc_goal</code>, <code>Tce_grasp</code>, <code>Tce_standoff</code>, and <code>k</code>.</p>
-                        <ul>
-                            <li><strong>Tse_initial:</strong> Initial configuration of the end-effector in the reference trajectory.</li>
-                            <li><strong>Tsc_initial:</strong> Cube's initial configuration.</li>
-                            <li><strong>Tsc_goal:</strong> Cube's desired final configuration.</li>
-                            <li><strong>Tce_grasp:</strong> End-effector's configuration relative to the cube when grasping.</li>
-                            <li><strong>Tce_standoff:</strong> Standoff configuration above the cube.</li>
-                            <li><strong>k:</strong> Number of trajectory reference configurations per 0.01 seconds.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p style="text-align:left;"><strong>Output:</strong> The return of the function is <code>N_final</code>.</p>
-                        <ul>
-                            <li><strong>N_final:</strong> A representation of the N configurations of the end-effector along the concatenated eight-segment reference trajectory. Each configuration includes a transformation matrix and gripper state.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+        <h4>Haptic-Guided Teleoperation</h4>
+        <p>As the baseline setup, we implemented a position-based uni-
+            lateral PD controller to control the slave motion via the master.
+            This baseline implementation realizes teleoperation to move the
+            slave arm, however, no feedback is provided at the master side.
+            For this reason, we call this baseline the “No Feedback” condi-
+            tion.
+        </p>
+        <p>
+            Force Feedback Using Joint Angle Coupling
+        </p>
+        <br>
+        <p>show equations and graphs</p>
     
-            <li>
-                <h5 style="text-align:left;">FeedbackControl</h5>
-                <ul>
-                    <li>
-                        <p style="text-align:left;"><strong>Input:</strong> The function takes <code>X</code>, <code>Xd</code>, <code>Xd_next</code>, <code>Kp</code>, <code>Ki</code>, and <code>delta_t</code>.</p>
-                        <ul>
-                            <li><strong>X:</strong> Current actual end-effector configuration (T<sub>se</sub>).</li>
-                            <li><strong>Xd:</strong> Current end-effector reference configuration (T<sub>se,d</sub>).</li>
-                            <li><strong>Xd_next:</strong> Next timestep reference configuration (T<sub>se,d,next</sub>).</li>
-                            <li><strong>Kp, Ki:</strong> PI gain matrices.</li>
-                            <li><strong>delta_t:</strong> Timestep between reference trajectory configurations.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <p style="text-align:left;"><strong>Output:</strong></p>
-                        <ul>
-                            <li><strong>V:</strong> Commanded end-effector twist expressed in the end-effector frame.</li>
-                            <li><strong>Xerr:</strong> Error twist.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+        <h4>Density Map</h4>
+        <p>
+            Collecting data using haptic-guided teleoperation. Remember the location of the points, 
+            (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate probability density function </p>
     
-            <li>
-                <h5 style="text-align:left;">testJointLimits</h5>
-                <ul>
-                    <li>
-                        <p style="text-align:left;"><strong>Purpose:</strong> Helps the robot arm avoid singularities. Ensures joints 3 and 4 remain less than -0.3.</p>
-                    </li>
-                    <li>
-                        <p style="text-align:left;"><strong>Input:</strong> <code>joint_theta</code>: Joint angles to check against limits.</p>
-                    </li>
-                    <li>
-                        <p style="text-align:left;"><strong>Output:</strong> <code>res</code>: Indicates which joints exceed limits.</p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <h4>Ergodic Search</h4>
+        <p>
+            it can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm 
+            follows a gradient descent approach to find a locally optimal solution. 
+            Given the current estimation of the control  u(t) , at each iteration, iLQR finds the descent direction  v(t)  by solving the following ODEs:
+            
+            For the ergodic controller,
+            we model the system as a double-integrator with state X =
+            [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
+        </p>
+
+        <h4>Robot Arm Testing</h4>
+        <p>
+            Get trajectory from ergodic search and use moveit to control the robot.
+            test I finished: reaching a target location without colliding with an obstacle.
+            cleaning task: success m is evaluated as a continuous variable
+            based on both workspace coverage and object avoidance
+            balance task: 
+        </p>
     </body>
     </html>
