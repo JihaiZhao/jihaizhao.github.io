@@ -1,4 +1,5 @@
-<html >
+<!DOCTYPE html>
+<html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/posts.css">
@@ -31,35 +32,37 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen>
         </iframe>
-        <p style="text-align:left;">This project consists of several ROS packages</p>
+        <br>
+        <br>
+        <p>This project consists of several ROS packages</p>
     
         <h4>turtlelib Library</h4>
-        <p style="text-align:left;">A library for handling transformations in SE(2) and other turtlebot-related math which include:</p>
+        <p>A library for handling transformations in SE(2) and other turtlebot-related math which include:</p>
         <ul>
             <li>
-                <p style="text-align:left;">geometry2d - Handles 2D geometry primitives.</p>
+                <p>geometry2d - Handles 2D geometry primitives.</p>
             </li>
             <li>
-                <p style="text-align:left;">se2d - Handles 2D rigid body transformations.</p>
+                <p>se2d - Handles 2D rigid body transformations.</p>
             </li>
             <li>
-                <p style="text-align:left;">frame_main - Performs some rigid body computations based on user input.</p>
+                <p>frame_main - Performs some rigid body computations based on user input.</p>
             </li>
             <li>
-                <p style="text-align:left;">diff_drive - Includes all functions related to the kinematics of wheeled mobile robots.</p>
+                <p>diff_drive - Includes all functions related to the kinematics of wheeled mobile robots.</p>
             </li>
         </ul>
     
         <h4>nuturtle_description</h4>
-        <p style="text-align:left;">URDF files for Nuturtle turtlebot3_burger. Able to display multiple turtlebot3 models in RViz, each appearing with a different color. Also be able to change the physical properties of the robot by editing a YAML file.</p>
+        <p>URDF files for Nuturtle turtlebot3_burger. Able to display multiple turtlebot3 models in RViz, each appearing with a different color. Also be able to change the physical properties of the robot by editing a YAML file.</p>
         <img class="img-responsive" src="../img/SLAM/nusim2.png" alt="Nuturtle Description">
     
         <h4>nusim</h4>
-        <p style="text-align:left;">Create the basic environment for the robot. Allow the robot to move, according to simulated kinematics, but through the same publisher/subscriber interface that an actual turtlebot uses.</p>
+        <p>Create the basic environment for the robot. Allow the robot to move, according to simulated kinematics, but through the same publisher/subscriber interface that an actual turtlebot uses.</p>
     
         <h4>nuslam</h4>
-        <h4 style="text-align:left;">EKF SLAM</h4>
-        <p style="text-align:left;">
+        <h4>EKF SLAM</h4>
+        <p>
             The primary component of this project is the implementation of feature-based extended Kalman filter simultaneous localization and mapping 
             (<a href="https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf">EKF-SLAM</a>). 
             The EKF-SLAM algorithm consisted of three steps: initialization, prediction, and update. 
@@ -69,14 +72,15 @@
         </p>
         <br>
     
-        <h4 style="text-align:left;">Landmark Detection</h4>
-        <p style="text-align:left;">
+        <h4>Landmark Detection</h4>
+        <p>
             To detect cylindrical landmarks, the landmarks node reads LIDAR data and divides the data into clusters, 
             and then performs supervised (circular regression) learning on each of the clusters to determine which of the clusters should be counted as landmarks.
         </p>
         <img class="img-responsive" src="../img/SLAM/landmark.png" alt="Land Mark Detection">
     </body>
-    </html>
+</html>
+
     <!-- <p>
         <i class="fa fa-folder"></i>
         <a class="i_link" href="https://drive.google.com/drive/folders/1TNZ8SyosjOLlZyvqhP1VXR4JyEkqHliD?usp=sharing" target="_blank" rel="noopener noreferrer">Other Video Demos</a>
