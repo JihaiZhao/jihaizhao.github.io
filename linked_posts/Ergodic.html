@@ -41,7 +41,7 @@
         <h4><strong>Video Demo</strong></h4>
         <!-- <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
          -->
-        
+
         <br>
         <h4>Impedance Control</h4>
         <p>Allow user to interact with the robot arm and feel wightless when moving the arm</p>
@@ -66,8 +66,22 @@
         <h4>Density Map</h4>
         <p>
             Collecting data using haptic-guided teleoperation. Remember the location of the points, 
-            (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate probability density function </p>
-    
+            (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate probability density function 
+        </p>
+        
+        <div class="container">
+            <div clsas="row">
+                <div class="col-lg-2 ">
+                </div>
+                <div class="col-lg-4 ">
+                    <img src="../img/ergodic/data.jpg" style="width:80%" >  
+                </div>
+                <div class="col-lg-4 ">
+                    <img src="../img/ergodic/pdf.png" style="width:60%" >  
+                </div>
+            </div>
+        </div>
+
         <h4>Ergodic Search</h4>
         <p>
             it can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm 
@@ -78,6 +92,7 @@
             we model the system as a double-integrator with state X =
             [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
         </p>
+        <img src="../img/ergodic/ergodic.jpg" style="width:80%" >  
 
         <h4>Robot Arm Testing</h4>
         <p>
