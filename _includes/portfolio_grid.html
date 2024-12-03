@@ -11,8 +11,8 @@
     <div class="portfolio-flex-row">
       {% for post in site.posts %}
       <div class="portfolio-flex-item portfolio-item">
-        <a href="#portfolioModal-{{ post.modal-id }}" class="portfolio-link" data-toggle="modal">
-        <!-- <a href="_posts/{{ post.modal-id }}" class="portfolio-link" data-toggle="modal"> -->
+        <!-- <a href="#portfolioModal-{{ post.modal-id }}" class="portfolio-link" data-toggle="modal"> -->
+          <a href="linked_posts/{{ post.link }}.html" class="portfolio-link" data-toggle="modal"></a>
           <div class="caption">
             <div class="caption-content">
                 <i class="fa fa-search-plus fa-3x"> </i>
@@ -25,6 +25,28 @@
         </a>
       </div>
       {% endfor %}
+<!-- 
+      <div class="portfolio-flex-row">
+        {% for post in site.posts %}
+            <div class="portfolio-flex-item portfolio-item">
+                <a href="linked_posts/{{ post.link }}.html" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                            <p><br>{{ post.intro }}</p>
+                        </div>
+                    </div>
+                    <img src="img/portfolio/{{ post.img }}" class="img-responsive" alt="{{ post.alt }}">
+                </a>
+                <div class="post-grid-title">
+                    <h3>{{ post.title }}</h3>
+                    {% if post.skills %}
+                        <p>{{ post.skills }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %} -->
+
     </div>
   </div>
 </section>
