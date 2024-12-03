@@ -17,6 +17,7 @@
         margin-left: 0; /* Adjust this to match <p>'s starting position */
     }
     li {
+        padding-left: 20px;
         margin-left: 20px; /* Adjust this for proper spacing if needed */
     }
 </style>
@@ -29,8 +30,6 @@
     <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     
     <p>To achieve the goal of the project, I wrote four functions:</p>
-    <ul>
-        <li>
             <h5>NextState</h5>
             <ul>
                 <li><strong>Input:</strong> The input of the function includes <code>config</code>, <code>speed</code>, <code>timestep</code>, and <code>max_speed</code>.
@@ -48,9 +47,7 @@
                     </ul>
                 </li>
             </ul>
-        </li>
 
-        <li>
             <h5>TrajectoryGenerator</h5>
             <ul>
                 <li><strong>Input:</strong> The function takes <code>Tse_initial</code>, <code>Tsc_initial</code>, <code>Tsc_goal</code>, <code>Tce_grasp</code>, <code>Tce_standoff</code>, and <code>k</code>.
@@ -69,9 +66,8 @@
                     </ul>
                 </li>
             </ul>
-        </li>
 
-        <li>
+
             <h5>FeedbackControl</h5>
             <ul>
                 <li><strong>Input:</strong> The function takes <code>X</code>, <code>Xd</code>, <code>Xd_next</code>, <code>Kp</code>, <code>Ki</code>, and <code>delta_t</code>.
@@ -90,16 +86,14 @@
                     </ul>
                 </li>
             </ul>
-        </li>
 
-        <li>
+
             <h5>testJointLimits</h5>
             <ul>
                 <li><strong>Purpose:</strong> Helps the robot arm avoid singularities. Ensures joints 3 and 4 remain less than -0.3.</li>
                 <li><strong>Input:</strong> <code>joint_theta</code>: Joint angles to check against limits.</li>
                 <li><strong>Output:</strong> <code>res</code>: Indicates which joints exceed limits.</li>
             </ul>
-        </li>
-    </ul>
+
 </body>
 </html>
