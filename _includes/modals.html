@@ -1,5 +1,5 @@
 <!-- Portfolio Modals -->
-<!-- {% for post in site.posts %}
+{% for post in site.posts %}
 <div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog"
   aria-hidden="true">
   <div class="modal-content">
@@ -45,8 +45,9 @@
     </div>
   </div>
 </div>
-{% endfor %} -->
-{% for post in site.posts %}
+{% endfor %}
+
+<!-- {% for post in site.posts %}
 <div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -60,30 +61,6 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>{{ post.title }}</h2>
-                        <hr class="star-primary">
-                        <!-- <div class="under-title">
-                            <div class="col-lg-2 ">
-                                <p>
-                                    Skills:
-                                    <br>
-                                    Members: 
-                                    <br>
-                                    Time:
-                                </p>
-                            </div>
-                            <div class="col-lg-10 ">
-                                <p>
-                                    {{ post.skills }}
-                                    <br>
-                                    {{post.members}}
-                                    <br>
-                                    {{ post.time }}
-                                 </p>
-                            </div>
-
-
-                        </div> -->
-
                         {% if post.video %}
                             <iframe width="750" height="422" src="{{post.video}}" frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -99,12 +76,6 @@
                         {% if post.urls %}
                             <hr class="para-break" data-content="  Related Links  ">
                         {% endif %}
-                        <!-- {% for url in post.urls %}
-                            <p>
-                                <i class="fa {{url.url-icon}}"></i>
-                                <a href={{ url.url }} target="_blank" rel="noopener noreferrer">{{url.url-description}}</a>
-                            </p>
-                        {% endfor %} -->
                         <br>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     </div>
@@ -113,4 +84,4 @@
         </div>
     </div>
 </div>
-{% endfor %}
+{% endfor %} -->
