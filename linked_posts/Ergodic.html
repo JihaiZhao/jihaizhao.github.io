@@ -46,16 +46,15 @@
         <h4>Impedance Control</h4>
         <p>Allow user to interact with the robot arm and feel wightless when moving the arm</p>
         <p>Talk about the equipment we used, the hardware, three different impedance modes we implemented, the graphs of comparison, and our conclusion.</p>
-
+        <p>This should be a seperate post</p>
         <br>
     
         <h4>Haptic-Guided Teleoperation</h4>
-        <p>As the baseline setup, we implemented a position-based uni-
-            lateral PD controller to control the slave motion via the master.
-            This baseline implementation realizes teleoperation to move the
-            slave arm, however, no feedback is provided at the master side.
-            For this reason, we call this baseline the “No Feedback” condi-
-            tion.
+        <p>As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling to control the slave robot motion via the master robot.
+            To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html", target="_blank">libfranka library</a> which is a C++ library provided by Franka.
+            For master robot I used the impedance control mode I implemented before (more detail can be find in this post,给连接). For the slave robot 
+            I used a control loop in the libfranka model library. This control loop include two Callback functions for sending joint-level torque commands and target joint positions.
+            The torque command was computed from joint impedance control law and the target joint positions were received from the master Franka robot. 
         </p>
         <p>
             Force Feedback Using Joint Angle Coupling
@@ -74,7 +73,7 @@
                 <div class="col-lg-2 ">
                 </div>
                 <div class="col-lg-4 ">
-                    <img src="../img/ergodic/data.jpg" style="width:80%" >  
+                    <img src="../img/ergodic/data.png" style="width:80%" >  
                 </div>
                 <div class="col-lg-4 ">
                     <img src="../img/ergodic/pdf.png" style="width:60%" >  
@@ -92,7 +91,7 @@
             we model the system as a double-integrator with state X =
             [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
         </p>
-        <img src="../img/ergodic/ergodic.jpg" style="width:80%" >  
+        <img src="../img/ergodic/ergodic.png" style="width:80%" >  
 
         <h4>Robot Arm Testing</h4>
         <p>
