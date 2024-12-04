@@ -1,0 +1,96 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/posts.css">
+
+<head>
+    <title>Ergodic Imitation with 7-DoF Franka Arm</title>
+</head>
+
+<nav class="navbar">
+    <a href="/.."><i class="fa fa-home"></i></a>
+</nav>
+
+<style>
+    /* Remove default padding and margin for ul */
+    ul {
+        width: 80%;
+        /* Set width */
+        margin: auto;
+        /* Center align ul */
+        padding-left: 0;
+        /* Remove left padding */
+    }
+
+    /* Add left margin to li for alignment with <p> */
+    li {
+        margin-left: 20px;
+        /* Adjust spacing as needed */
+    }
+</style>
+
+<body>
+    <h4><strong>Overview</strong></h4>
+
+    <p>This project uses the Franka Emika Panda arm to solve a 3D bin packing problem,
+        an optimization challenge that involves efficiently packing a set of items of
+        different sizes into a container, minimizing wasted space and maximizing space utilization.
+        It uses computer vision to detect the dimensions and location of the object to be packed, and it uses Moveit2 to
+        plan the trajectories.</p>
+    <br>
+    <h4><strong>Video Demo</strong></h4>
+    <iframe width="700" height="450" src="https://www.youtube.com/embed/CVzJDIRWqrI" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    <br>
+    <h4><strong>Object Detection</strong></h4>
+    <p>Detecting the dimension of the object and finding the precise location of the
+        object are key to this project. A Realsense D435 is mounted on the robot. The
+        object was detected and tracked using the RGB camera data and depth data provided by the Intel RealSense camera.
+        All potential objects are red in color, and their location is determined using color masking in OpenCV to
+        isolate the red pixels in the camera’s view. A contour was drawn around the red area, and the centroid of the
+        contour and four more points on the edges were found. Then the grasp position and orientation of the object were
+        calculated.</p>
+    <p>The object will be placed in the “bin,” and the robot will move to the observe position first. Once the camera
+        detects that an object appears, the robot will move to the top of the object to ensure the object is at the
+        center of the camera's view for better dimension detection.</p>
+    <img class="img-responsive" src="../img/PACKING/1.png" alt="profile-pic" style="width:80%" />
+    <br>
+    <h4><strong>Grasping</strong></h4>
+    <p>To complete the grasping/placing process accurately and reliably, a custom gripper was designed, as well as the
+        shape of the objects.</p>
+    <p>The grasping process includes three steps:</p>
+    <ul>
+        <li>Move to the observe position</li>
+        <li>Move to the checking position (camera is on top of the object)</li>
+        <li>Move to the actual position of the object and grasp it</li>
+    </ul>
+    <p>A custom wrapper interface was used to control the robot during both grasping and placing. The purpose of the
+        wrapper interface was to simplify implementation; it offers an easier way of planning trajectories. The wrapper
+        was written in the <a href="https://github.com/JihaiZhao/Botrista">Making Pour Over Coffee with a Robot Arm</a>
+        project.</p>
+    <br>
+    <h4><strong>Packing</strong></h4>
+    <p>Here are some constraints in this project:</p>
+    <ul>
+        <li>All objects are rectangular.</li>
+        <li>The height is the same.</li>
+        <li>The size of the container is 9cm x 9cm x 10cm.</li>
+        <li>The dimension of the incoming object is unknown, and the order is random.</li>
+        <li>The object can be placed wherever as long as it is in the bin.</li>
+    </ul>
+    <p>For this project, the Best-fit algorithm was used to solve this 3D rectangular packing problem. Its input is a
+        list of items of different sizes, and the output is the location of the item to place. The best-fit algorithm
+        uses the following heuristic:</p>
+    <ul>
+        <li>It keeps a list of open bins, which is initially empty.</li>
+        <li>When an item arrives, it finds the bin with the maximum load into which the item can fit, if any. The load
+            of a bin is defined as the sum of the sizes of existing items in the bin before placing the new item.</li>
+    </ul>
+    <p>Here is a GIF showing how this algorithm works:</p>
+    <img class="img-responsive" src="../img/PACKING/pack_py.gif" alt="profile-pic" style="width:80%" />
+</body>
+
+</html>

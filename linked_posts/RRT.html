@@ -1,0 +1,68 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/posts.css">
+
+    <head>
+        <title>RRT</title>
+    </head>
+
+    <nav class="navbar">
+        <a href="/.."><i class="fa fa-home"></i></a>
+    </nav>
+
+    <style>
+        /* Remove default padding and margin for ul */
+        ul {
+            width: 80%;
+            /* Set width */
+            margin: auto;
+            /* Center align ul */
+            padding-left: 0;
+            /* Remove left padding */
+        }
+
+        /* Add left margin to li for alignment with <p> */
+        li {
+            margin-left: 20px;
+            /* Adjust spacing as needed */
+        }
+    </style>
+
+    <body>
+        <h4><strong>Overview</strong></h4>
+
+        <p>A Rapidly-Exploring Random Tree (RRT) is a fundamental path planning algorithm in robotics. Path planning is the
+            task
+            of moving a robot from one location to another while avoiding obstacles and satisfying constraints. An RRT
+            consists
+            of a set of vertices, which represent configurations in some domain D, and edges, which connect two vertices.
+            The
+            algorithm randomly builds a tree in such a way that, as the number of vertices n increases to ∞, the vertices
+            are
+            uniformly distributed across the domain D⊂Rn.</p>
+        <br>
+        <h4><strong>Task 1: Simple RRT</strong></h4>
+        <p>Implement an RRT in a two-dimensional domain, D=[0,100]×[0,100]. Use an initial configuration of qinit=(50,50)
+            and
+            Δ=1. Plot the result for a few different values of K.</p>
+        <img class="img-responsive" src="../img/RRT/task1.png" alt="profile-pic" style="width:80%"/>
+        <br>
+        <h4><strong>Task 2: Planning a Path with Obstacles</strong></h4>
+        <p>Compared to task 1, there are three modifications to make:</p>
+        <ul>
+            <li>Create 35 circle obstacles with random radii and random positions in the domain.</li>
+            <li>Implement collision checking.</li>
+            <li>Once a path is found from a node in the tree to the goal state, traverse the tree backward to the starting
+                location to find the path.</li>
+        </ul>
+        <img class="img-responsive" src="../img/RRT/task2.png" alt="profile-pic" style="width:80%"/>
+        <br>
+        <h4><strong>Task 3: RRT with Arbitrary Objects</strong></h4>
+        <p>Now let's consider arbitrary objects, represented by black pixels in a binary image. Load a binary image into the
+            script, randomly choose starting and goal locations, and plan a path.</p>
+        <img class="img-responsive" src="../img/RRT/task3.png" alt="profile-pic" style="width:80%"/>
+    </body>
+
+</html>

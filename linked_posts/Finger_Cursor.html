@@ -1,0 +1,94 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/posts.css">
+
+    <head>
+        <title>Finger Cursor</title>
+    </head>
+
+    <nav class="navbar">
+        <a href="/.."><i class="fa fa-home"></i></a>
+    </nav>
+
+    <style>
+        /* Remove default padding and margin for ul */
+        ul {
+            width: 80%;
+            /* Set width */
+            margin: auto;
+            /* Center align ul */
+            padding-left: 0;
+            /* Remove left padding */
+        }
+
+        /* Add left margin to li for alignment with <p> */
+        li {
+            margin-left: 20px;
+            /* Adjust spacing as needed */
+        }
+    </style>
+
+    <body>
+
+        <h4><strong>Overview</strong></h4>
+        <p>The purpose of the project is to track the location of the fingertip in real time and draw the path of fingertip
+            movement in 3D.</p>
+
+        <h4><strong>Video Demo</strong></h4>
+        <iframe width="700" height="450" src="https://www.youtube.com/embed/WDglRLueaaQ" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        <br>
+
+        <h4><strong>Image Segmentation</strong></h4>
+        <p>The first step is background subtraction and skin color extraction. I decided to use YCrCb color ranges since
+            many studies show that YCrCb color ranges are best for representing the skin color region. I first split it into
+            3 channels (Y, Cr, Cb) and threshold each channel independently. For each channel, I use morphology operators to
+            remove noise and later combine them using
+            <code>cv2.bitwise_and(mask_Y, cv2.bitwise_and(mask_Cr, mask_Cb))</code>. Lastly, threshold binarization is
+            applied to smooth the image.</p>
+        <p>The resulting image after Image Segmentation:</p>
+        <img class="center" src="../img/finger_cursor/image_segmentation.png" style="width:80%" />
+        <br>
+
+        <h4><strong>Detection</strong></h4>
+        <p>Computing a convex hull for an object and determining its convexity is a good way to find the shape of a human
+            hand, as hand shapes are well characterized by such defects. The convexity defects obtained from OpenCV include
+            information about start points, end points, depth points, and the distance between the farthest contour point
+            and the hull.</p>
+        <p>However, this information includes noise. To determine precise finger locations, it must meet the following
+            criteria:</p>
+        <ul>
+            <li>Depth of each defect must be longer than the palm center radius.</li>
+            <li>Angle between the start point and end point must be less than 90°.</li>
+        </ul>
+        <p>To find the angle, I implemented the law of cosines:</p>
+        <img class="center" src="../img/finger_cursor/detection.png" style="width:80%"/>
+        <p>With all the information from the previous steps, I can find all finger locations when the user opens their palm.
+            Next, I want to perform gesture recognition based on simple and heuristic assumptions. Currently, I only focus
+            on two gestures:</p>
+        <ul>
+            <li>Open Palm—4–5 fingers detected.</li>
+            <li>Ready to Draw—1 finger detected.</li>
+        </ul>
+        <p>Detecting the first gesture is relatively easy as mentioned before. However, the information from the previous
+            steps is not enough to find the fingertip when the user raises only one finger. The method of detecting one
+            finger can be explained by the following picture:</p>
+        <img class="center" src="../img/finger_cursor/one_finger.png" style="width:80%" />
+        <p>K is a constant value. For each potential finger location, I find a pair of points (<code>contour[i-k]</code> and
+            <code>contour[i+k]</code>) and calculate the location between the pair of points. This distance, defined as l,
+            is used to determine the precise finger location, with the potential location having the smallest l being
+            considered the fingertip.</p>
+
+        <h4><strong>Drawing the Path</strong></h4>
+        <p>Drawing starts only when the user raises one finger. This allows the user to open their palm to stop drawing and
+            reposition where they want to draw.</p>
+        <img class="center" src="../img/finger_cursor/drawing.png" style="width:80%" />
+        <p>Additionally, since I am using the Realsense D435i depth camera, I can record all 3D locations of the path:</p>
+        <img class="center" src="../img/finger_cursor/3d.png" style="width:80%" />
+
+    </body>
+</html>
