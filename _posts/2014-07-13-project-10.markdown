@@ -3,7 +3,7 @@ layout: default
 modal-id: 10
 title: Ergodic Imitation with 7-DoF Franka Arm
 short-caption: Ergodic Imitation with 7-DoF Franka Arm
-date: 2023-12-1
+date: 2024-12-1
 img: Youbot_Best.gif
 youtube: https://www.youtube.com/watch?v=q7HbfBILOt4
 alt: image-alt

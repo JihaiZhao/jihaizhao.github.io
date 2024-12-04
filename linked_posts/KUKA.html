@@ -1,105 +1,179 @@
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/posts.css">
-    <head>
-        <title>KUKA youBot Mobile Manipulation</title>
-    </head>
 
-    <nav class="navbar">
-        <a href="/.."><i class="fa fa-home"></i></a>
-    </nav>  
+<head>
+    <title>KUKA youBot Mobile Manipulation</title>
+</head>
 
-    <style>
-        /* Remove default padding and margin for ul */
-        ul {
-            width: 80%; /* Set width */
-            margin: auto; /* Center align ul */
-            padding-left: 0; /* Remove left padding */
-        }
-        /* Add left margin to li for alignment with <p> */
-        li {
-            margin-left: 20px; /* Adjust spacing as needed */
-        }
-    </style>
+<nav class="navbar">
+    <a href="/.."><i class="fa fa-home"></i></a>
+</nav>
+
+<style>
+    /* Remove default padding and margin for ul */
+    ul {
+        width: 80%;
+        /* Set width */
+        margin: auto;
+        /* Center align ul */
+        padding-left: 0;
+        /* Remove left padding */
+    }
+
+    /* Add left margin to li for alignment with <p> */
+    li {
+        margin-left: 20px;
+        /* Adjust spacing as needed */
+    }
+</style>
+
+<body>
+    <h1 class='title'>KUKA youBot Mobile Manipulation</h1>
     
-    <body>
-        <h4><strong>Overview</strong></h4>
-        <p>The purpose of this project is writing software that plans a trajectory for the end-effector of the youBot mobile manipulator (a mobile base with four mecanum wheels and a 5R robot arm), performs odometry as the chassis moves, and performs feedback control to drive the youBot to pick up a block at a specified location, carry it to a desired location, and put it down.</p>
-        
-        <h4><strong>Video Demo</strong></h4>
-        <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        
-        <p>To achieve the goal of the project, I wrote four functions:</p>
-        
-        <h5>NextState</h5>
-        <ul>
-            <li>
-                <p><strong>Input:</strong> The input of the function includes <code>config</code>, <code>speed</code>, <code>timestep</code>, and <code>max_speed</code>.</p>
-                <ul>
-                    <li><p><strong>config:</strong> A 12-vector representing the current configuration of the robot (3 variables for the chassis configuration, 5 variables for the arm configuration, and 4 variables for the wheel angles).</p></li>
-                    <li><p><strong>speed:</strong> A 9-vector of controls indicating the wheel speeds and the arm joint speeds.</p></li>
-                    <li><p><strong>timestep:</strong> A timestep.</p></li>
-                    <li><p><strong>max_speed:</strong> A positive real value indicating the maximum angular speed of the arm joints and the wheels. Speeds outside the range are set to the nearest boundary.</p></li>
-                </ul>
-            </li>
-            <li>
-                <p><strong>Output:</strong> The return of the function is <code>new_config</code>.</p>
-                <ul>
-                    <li><p><strong>new_config:</strong> A 12-vector representing the configuration of the robot.</p></li>
-                    <li><p>The function is based on a simple first-order Euler step, updating arm joint angles, wheel angles, and chassis configuration using odometry.</p></li>
-                </ul>
-            </li>
-        </ul>
+    <h4><strong>Video Demo</strong></h4>
+    <iframe width="750" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+    
+    <h4><strong>Overview</strong></h4>
+    <p>The purpose of this project is writing software that plans a trajectory for the end-effector of the youBot mobile
+        manipulator (a mobile base with four mecanum wheels and a 5R robot arm), performs odometry as the chassis moves,
+        and performs feedback control to drive the youBot to pick up a block at a specified location, carry it to a
+        desired location, and put it down.</p>
 
-        <h5>TrajectoryGenerator</h5>
-        <ul>
-            <li>
-                <p><strong>Input:</strong> The function takes <code>Tse_initial</code>, <code>Tsc_initial</code>, <code>Tsc_goal</code>, <code>Tce_grasp</code>, <code>Tce_standoff</code>, and <code>k</code>.</p>
-                <ul>
-                    <li><p><strong>Tse_initial:</strong> Initial configuration of the end-effector in the reference trajectory.</p></li>
-                    <li><p><strong>Tsc_initial:</strong> Cube's initial configuration.</p></li>
-                    <li><p><strong>Tsc_goal:</strong> Cube's desired final configuration.</p></li>
-                    <li><p><strong>Tce_grasp:</strong> End-effector's configuration relative to the cube when grasping.</p></li>
-                    <li><p><strong>Tce_standoff:</strong> Standoff configuration above the cube.</p></li>
-                    <li><p><strong>k:</strong> Number of trajectory reference configurations per 0.01 seconds.</p></li>
-                </ul>
-            </li>
-            <li>
-                <p><strong>Output:</strong> The return of the function is <code>N_final</code>.</p>
-                <ul>
-                    <li><p><strong>N_final:</strong> A representation of the N configurations of the end-effector along the concatenated eight-segment reference trajectory. Each configuration includes a transformation matrix and gripper state.</p></li>
-                </ul>
-            </li>
-        </ul>
+    <p>To achieve the goal of the project, I wrote four functions:</p>
 
-        <h5>FeedbackControl</h5>
-        <ul>
-            <li>
-                <p><strong>Input:</strong> The function takes <code>X</code>, <code>Xd</code>, <code>Xd_next</code>, <code>Kp</code>, <code>Ki</code>, and <code>delta_t</code>.</p>
-                <ul>
-                    <li><p><strong>X:</strong> Current actual end-effector configuration (T<sub>se</sub>).</p></li>
-                    <li><p><strong>Xd:</strong> Current end-effector reference configuration (T<sub>se,d</sub>).</p></li>
-                    <li><p><strong>Xd_next:</strong> Next timestep reference configuration (T<sub>se,d,next</sub>).</p></li>
-                    <li><p><strong>Kp, Ki:</strong> PI gain matrices.</p></li>
-                    <li><p><strong>delta_t:</strong> Timestep between reference trajectory configurations.</p></li>
-                </ul>
-            </li>
-            <li>
-                <p><strong>Output:</strong></p>
-                <ul>
-                    <li><p><strong>V:</strong> Commanded end-effector twist expressed in the end-effector frame.</p></li>
-                    <li><p><strong>Xerr:</strong> Error twist.</p></li>
-                </ul>
-            </li>
-        </ul>
+    <h5>NextState</h5>
+    <ul>
+        <li>
+            <p><strong>Input:</strong> The input of the function includes <code>config</code>, <code>speed</code>,
+                <code>timestep</code>, and <code>max_speed</code>.</p>
+            <ul>
+                <li>
+                    <p><strong>config:</strong> A 12-vector representing the current configuration of the robot (3
+                        variables for the chassis configuration, 5 variables for the arm configuration, and 4 variables
+                        for the wheel angles).</p>
+                </li>
+                <li>
+                    <p><strong>speed:</strong> A 9-vector of controls indicating the wheel speeds and the arm joint
+                        speeds.</p>
+                </li>
+                <li>
+                    <p><strong>timestep:</strong> A timestep.</p>
+                </li>
+                <li>
+                    <p><strong>max_speed:</strong> A positive real value indicating the maximum angular speed of the arm
+                        joints and the wheels. Speeds outside the range are set to the nearest boundary.</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p><strong>Output:</strong> The return of the function is <code>new_config</code>.</p>
+            <ul>
+                <li>
+                    <p><strong>new_config:</strong> A 12-vector representing the configuration of the robot.</p>
+                </li>
+                <li>
+                    <p>The function is based on a simple first-order Euler step, updating arm joint angles, wheel
+                        angles, and chassis configuration using odometry.</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
-        <h5>testJointLimits</h5>
-        <ul>
-            <li><p><strong>Purpose:</strong> Helps the robot arm avoid singularities. Ensures joints 3 and 4 remain less than -0.3.</p></li>
-            <li><p><strong>Input:</strong> <code>joint_theta</code>: Joint angles to check against limits.</p></li>
-            <li><p><strong>Output:</strong> <code>res</code>: Indicates which joints exceed limits.</p></li>
-        </ul>
-    </body>
+    <h5>TrajectoryGenerator</h5>
+    <ul>
+        <li>
+            <p><strong>Input:</strong> The function takes <code>Tse_initial</code>, <code>Tsc_initial</code>,
+                <code>Tsc_goal</code>, <code>Tce_grasp</code>, <code>Tce_standoff</code>, and <code>k</code>.</p>
+            <ul>
+                <li>
+                    <p><strong>Tse_initial:</strong> Initial configuration of the end-effector in the reference
+                        trajectory.</p>
+                </li>
+                <li>
+                    <p><strong>Tsc_initial:</strong> Cube's initial configuration.</p>
+                </li>
+                <li>
+                    <p><strong>Tsc_goal:</strong> Cube's desired final configuration.</p>
+                </li>
+                <li>
+                    <p><strong>Tce_grasp:</strong> End-effector's configuration relative to the cube when grasping.</p>
+                </li>
+                <li>
+                    <p><strong>Tce_standoff:</strong> Standoff configuration above the cube.</p>
+                </li>
+                <li>
+                    <p><strong>k:</strong> Number of trajectory reference configurations per 0.01 seconds.</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p><strong>Output:</strong> The return of the function is <code>N_final</code>.</p>
+            <ul>
+                <li>
+                    <p><strong>N_final:</strong> A representation of the N configurations of the end-effector along the
+                        concatenated eight-segment reference trajectory. Each configuration includes a transformation
+                        matrix and gripper state.</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>FeedbackControl</h5>
+    <ul>
+        <li>
+            <p><strong>Input:</strong> The function takes <code>X</code>, <code>Xd</code>, <code>Xd_next</code>,
+                <code>Kp</code>, <code>Ki</code>, and <code>delta_t</code>.</p>
+            <ul>
+                <li>
+                    <p><strong>X:</strong> Current actual end-effector configuration (T<sub>se</sub>).</p>
+                </li>
+                <li>
+                    <p><strong>Xd:</strong> Current end-effector reference configuration (T<sub>se,d</sub>).</p>
+                </li>
+                <li>
+                    <p><strong>Xd_next:</strong> Next timestep reference configuration (T<sub>se,d,next</sub>).</p>
+                </li>
+                <li>
+                    <p><strong>Kp, Ki:</strong> PI gain matrices.</p>
+                </li>
+                <li>
+                    <p><strong>delta_t:</strong> Timestep between reference trajectory configurations.</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p><strong>Output:</strong></p>
+            <ul>
+                <li>
+                    <p><strong>V:</strong> Commanded end-effector twist expressed in the end-effector frame.</p>
+                </li>
+                <li>
+                    <p><strong>Xerr:</strong> Error twist.</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <h5>testJointLimits</h5>
+    <ul>
+        <li>
+            <p><strong>Purpose:</strong> Helps the robot arm avoid singularities. Ensures joints 3 and 4 remain less
+                than -0.3.</p>
+        </li>
+        <li>
+            <p><strong>Input:</strong> <code>joint_theta</code>: Joint angles to check against limits.</p>
+        </li>
+        <li>
+            <p><strong>Output:</strong> <code>res</code>: Indicates which joints exceed limits.</p>
+        </li>
+    </ul>
+</body>
 
 </html>

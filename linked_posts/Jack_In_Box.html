@@ -25,17 +25,11 @@
         }
     </style>
     <body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px;">
-        <h4><strong>Overview</strong></h4>
-        <p>
-            The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and 
-            transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity 
-            and zero theta for 10 seconds with a time step of 0.01s.
-        </p>
-        <br>
-
-        <h4><strong>Video Demo</strong></h4>
+        <h1 class='title'>Jack Bouncing Simulation</h1>
+        
+        <hr class="para-break" data-content="  Video Demo  " id="intro">
         <iframe 
-            width="700" 
+            width="750" 
             height="450" 
             src="https://www.youtube.com/embed/YN1Lk3Jp5u0" 
             title="YouTube video player" 
@@ -45,15 +39,23 @@
         </iframe>
         <br>
 
-        <h4><strong>Drawing of the System</strong></h4>
-        <img class="img-responsive" src="../img/me314/drawing.jpg" alt="Drawing of the system" style="width:80%"/>
+        <hr class="para-break" data-content="  Overview  " id="intro">
+        <p>
+            The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and 
+            transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity 
+            and zero theta for 10 seconds with a time step of 0.01s.
+        </p>
+        <br>
+
+        <hr class="para-break" data-content="  Drawing of the System  ">
+        <img class="img-responsive" src="../img/me314/drawing.jpg" alt="Drawing of the system" style="width:60%"/>
         <p>
             Frame W is the world frame, frame A is the frame of the center of the box, frame B is the frame of the center of the jack. 
             g_B1, g_B2, g_B3, g_B4 are the transformations from frame B to the four edges of the jack.
         </p>
         <br>
 
-        <h4><strong>Calculation Description</strong></h4>
+        <hr class="para-break" data-content="  Calculation Description  ">
         <p>
             Lagrangian equation of the system: L = KE - V. For kinetic energy, first get the body velocity of the box by calculating 
             their rigid body transformation to world frame. Next, convert this 4x4 matrix to a 6x1 vector and last calculate KE. 
@@ -76,7 +78,7 @@
         <p>$$ F_y = m_{box} * g * 1.012 $$</p>
         <p>$$ F_θ = m_{box} * g * 0.5 $$</p>
         <p>The impact update law:</p>
-        <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:80%"/>
+        <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:60%"/>
         <p>
             The impact happened when one edge of the jack collided with one side of the box. P is the momentum; H is the Hamiltonian 
             of the system. After defining the 16 constraints of the system, evaluate the related expressions at $ τ^+$ and $ τ^−$ and 
@@ -85,7 +87,7 @@
         </p>
         <br><br>
 
-        <h4><strong>What Happened in Simulation</strong></h4>
+        <hr class="para-break" data-content="  What Happened in Simulation  ">
         <p>
             When the simulation begins, the jack falls because of gravity. Since I give a force in the positive y direction and a rotation 
             force to the box, the box will not fall, and the box will start rotating slowly. When the jack hits the sides of the box, it will 
@@ -95,6 +97,6 @@
             to time. It can further prove my work is reasonable. From y2, we can clearly see where collision happened. θ2 first increasing 
             and then decreasing is also due to the collision.
         </p>
-        <img class="img-responsive" src="../img/me314/changing.png" alt="Simulation Changes Over Time" style="width:80%"/>
+        <img class="img-responsive" src="../img/me314/changing.png" alt="Simulation Changes Over Time" style="width:60%"/>
     </body>
 </html>

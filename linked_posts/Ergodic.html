@@ -1,105 +1,132 @@
-<html >
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/posts.css">
-    <head>
-        <title>Ergodic Imitation with 7-DoF Franka Arm</title>
-    </head>
 
-    <nav class="navbar">
-        <a href="/.."><i class="fa fa-home" ></i></a>
-    </nav>  
+<head>
+    <title>Ergodic Imitation with 7-DoF Franka Arm</title>
+</head>
 
-    <style>
-        /* Remove default padding and margin for ul */
-        ul {
-            width: 80%; /* Set width */
-            margin: auto; /* Center align ul */
-            padding-left: 0; /* Remove left padding */
-        }
-        /* Add left margin to li for alignment with <p> */
-        li {
-            margin-left: 20px; /* Adjust spacing as needed */
-        }
-    </style>
-    
+<nav class="navbar">
+    <a href="/.."><i class="fa fa-home"></i></a>
+</nav>
 
-    <body>
-        <h4><strong>Overview</strong></h4>
-        <p>
-            The purpose of this project is to leverage <strong>ergodic imitation</strong> to learn both desirable and undesirable behaviors. 
-            To facilitate effective data collection, I first implemented an <strong>impedance control mode</strong> for a 7-DoF collaborative robotic arm 
-            (Franka) in collaboration with Courtney. Subsequently, I developed a <strong>haptic-guided teleoperation</strong> system for the Franka robot. 
-            This system enables the user to control <strong>Franka 1</strong>, which operates in impedance control mode, and couples its movements to 
-            <strong>Franka 2</strong>, such that any motion of Franka 1 is mirrored by Franka 2.
-        </p>
-        <p>
-            Following this, I employed a <strong>learning-from-demonstration (LfD)</strong> approach to derive robust task definitions from a combination 
-            of positive and negative demonstrations. The algorithmic framework for task learning is based on the <strong>ergodic metric</strong>, a measure 
-            of the information content in motion. Finally, I demonstrated the efficacy of this learning approach on (.......) using the 7-DoF Franka arm.
-        </p>        
-        <h4><strong>Video Demo</strong></h4>
-        <!-- <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<style>
+    /* Remove default padding and margin for ul */
+    ul {
+        width: 80%;
+        /* Set width */
+        margin: auto;
+        /* Center align ul */
+        padding-left: 0;
+        /* Remove left padding */
+    }
+
+    /* Add left margin to li for alignment with <p> */
+    li {
+        margin-left: 20px;
+        /* Adjust spacing as needed */
+    }
+</style>
+
+
+<body>
+    <h1 class='title'>Ergodic Imitation with 7-DoF Franka Arm</h1>
+
+    <hr class="para-break" data-content="  Video Demo  ">
+    <!-- <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
          -->
 
-        <br>
-        <h4>Impedance Control</h4>
-        <p>Allow user to interact with the robot arm and feel wightless when moving the arm</p>
-        <p>Talk about the equipment we used, the hardware, three different impedance modes we implemented, the graphs of comparison, and our conclusion.</p>
-        <p>This should be a seperate post</p>
-        <br>
-    
-        <h4>Haptic-Guided Teleoperation</h4>
-        <p>As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling to control the slave robot motion via the master robot.
-            To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html", target="_blank">libfranka library</a> which is a C++ library provided by Franka.
-            For master robot I used the impedance control mode I implemented before (more detail can be find in this post,给连接). For the slave robot 
-            I used a control loop in the libfranka model library. This control loop include two Callback functions for sending joint-level torque commands and target joint positions.
-            The torque command was computed from joint impedance control law and the target joint positions were received from the master Franka robot. 
-        </p>
-        <p>
-            Force Feedback Using Joint Angle Coupling
-        </p>
-        <br>
-        <p>show equations and graphs</p>
-    
-        <h4>Density Map</h4>
-        <p>
-            Collecting data using haptic-guided teleoperation. Remember the location of the points, 
-            (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate probability density function 
-        </p>
-        
-        <div class="container">
-            <div clsas="row">
-                <div class="col-lg-2 ">
-                </div>
-                <div class="col-lg-4 ">
-                    <img src="../img/ergodic/data.png" style="width:80%" >  
-                </div>
-                <div class="col-lg-4 ">
-                    <img src="../img/ergodic/pdf.png" style="width:60%" >  
-                </div>
+    <hr class="para-break" data-content="  Overview  " id="intro">
+    <p>
+        The purpose of this project is to leverage <strong>ergodic imitation</strong> to learn both desirable and
+        undesirable behaviors.
+        To facilitate effective data collection, I first implemented an <strong>impedance control mode</strong> for a
+        7-DoF collaborative robotic arm
+        (Franka) in collaboration with Courtney. Subsequently, I developed a <strong>haptic-guided
+            teleoperation</strong> system for the Franka robot.
+        This system enables the user to control <strong>Franka 1</strong>, which operates in impedance control mode, and
+        couples its movements to
+        <strong>Franka 2</strong>, such that any motion of Franka 1 is mirrored by Franka 2.
+    </p>
+    <p>
+        Following this, I employed a <strong>learning-from-demonstration (LfD)</strong> approach to derive robust task
+        definitions from a combination
+        of positive and negative demonstrations. The algorithmic framework for task learning is based on the
+        <strong>ergodic metric</strong>, a measure
+        of the information content in motion. Finally, I demonstrated the efficacy of this learning approach on
+        (.......) using the 7-DoF Franka arm.
+    </p>
+
+    <br>
+
+    <hr class="para-break" data-content="  Impedance Control  ">
+    <p>Allow user to interact with the robot arm and feel wightless when moving the arm</p>
+    <p>Talk about the equipment we used, the hardware, three different impedance modes we implemented, the graphs of
+        comparison, and our conclusion.</p>
+    <p>This should be a seperate post</p>
+    <br>
+
+    <hr class="para-break" data-content="  Haptic-Guided Teleoperation  ">
+    <p>As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling to
+        control the slave robot motion via the master robot.
+        To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html" ,
+            target="_blank">libfranka library</a> which is a C++ library provided by Franka.
+        For master robot I used the impedance control mode I implemented before (more detail can be find in this
+        post,给连接). For the slave robot
+        I used a control loop in the libfranka model library. This control loop include two Callback functions for
+        sending joint-level torque commands and target joint positions.
+        The torque command was computed from joint impedance control law and the target joint positions were received
+        from the master Franka robot.
+    </p>
+    <p>
+        Force Feedback Using Joint Angle Coupling
+    </p>
+    <br>
+    <p>show equations and graphs</p>
+
+    <hr class="para-break" data-content="  Density Map  ">
+    <p>
+        Collecting data using haptic-guided teleoperation. Remember the location of the points,
+        (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate
+        probability density function
+    </p>
+
+    <div class="container">
+        <div clsas="row">
+            <div class="col-lg-2 ">
+            </div>
+            <div class="col-lg-4 ">
+                <img src="../img/ergodic/data.png" style="width:80%">
+            </div>
+            <div class="col-lg-4 ">
+                <img src="../img/ergodic/pdf.png" style="width:60%">
             </div>
         </div>
+    </div>
 
-        <h4>Ergodic Search</h4>
-        <p>
-            it can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm 
-            follows a gradient descent approach to find a locally optimal solution. 
-            Given the current estimation of the control  u(t) , at each iteration, iLQR finds the descent direction  v(t)  by solving the following ODEs:
-            
-            For the ergodic controller,
-            we model the system as a double-integrator with state X =
-            [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
-        </p>
-        <img src="../img/ergodic/ergodic.png" style="width:80%" >  
+    <hr class="para-break" data-content="  Ergodic Search  ">
+    <p>
+        it can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm
+        follows a gradient descent approach to find a locally optimal solution.
+        Given the current estimation of the control u(t) , at each iteration, iLQR finds the descent direction v(t) by
+        solving the following ODEs:
 
-        <h4>Robot Arm Testing</h4>
-        <p>
-            Get trajectory from ergodic search and use moveit to control the robot.
-            test I finished: reaching a target location without colliding with an obstacle.
-            cleaning task: success m is evaluated as a continuous variable
-            based on both workspace coverage and object avoidance
-            balance task: 
-        </p>
-    </body>
+        For the ergodic controller,
+        we model the system as a double-integrator with state X =
+        [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
+    </p>
+    <img src="../img/ergodic/ergodic.png" style="width:80%">
+
+    <hr class="para-break" data-content="  Robot Arm Testing  ">
+    <p>
+        Get trajectory from ergodic search and use moveit to control the robot.
+        test I finished: reaching a target location without colliding with an obstacle.
+        cleaning task: success m is evaluated as a continuous variable
+        based on both workspace coverage and object avoidance
+        balance task:
+    </p>
+</body>
+
 </html>

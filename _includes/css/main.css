@@ -16,6 +16,16 @@ p.small {
     font-size: 16px;
 }
 
+ul {
+    font-size: 16px; /* Match the font size of <p> */
+    margin-top: 10px; /* Optional: Adds some spacing */
+}
+
+li {
+    font-size: 16px; /* Ensure <li> matches the <p> size */
+    margin-bottom: 5px; /* Optional: Adds some spacing between items */
+}
+
 a,
 a:hover,
 a:focus,

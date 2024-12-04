@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="css/posts.css">
 
 <head>
-    <title>Ergodic Imitation with 7-DoF Franka Arm</title>
+    <title>3D-Bin-Packing</title>
 </head>
 
 <nav class="navbar">
@@ -31,21 +31,24 @@
 </style>
 
 <body>
-    <h4><strong>Overview</strong></h4>
+    <h1 class='title'>3D-Bin-Packing</h1>
+    <hr class="para-break" data-content="  Video Demo  " id="intro">
+    <iframe width="750" height="450" src="https://www.youtube.com/embed/CVzJDIRWqrI" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
 
+    <hr class="para-break" data-content="  Overview  " id="intro">
     <p>This project uses the Franka Emika Panda arm to solve a 3D bin packing problem,
         an optimization challenge that involves efficiently packing a set of items of
         different sizes into a container, minimizing wasted space and maximizing space utilization.
         It uses computer vision to detect the dimensions and location of the object to be packed, and it uses Moveit2 to
         plan the trajectories.</p>
     <br>
-    <h4><strong>Video Demo</strong></h4>
-    <iframe width="700" height="450" src="https://www.youtube.com/embed/CVzJDIRWqrI" title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
     <br>
-    <h4><strong>Object Detection</strong></h4>
+
+    <hr class="para-break" data-content="  Object Detection  " id="intro">
     <p>Detecting the dimension of the object and finding the precise location of the
         object are key to this project. A Realsense D435 is mounted on the robot. The
         object was detected and tracked using the RGB camera data and depth data provided by the Intel RealSense camera.
@@ -55,10 +58,12 @@
         calculated.</p>
     <p>The object will be placed in the “bin,” and the robot will move to the observe position first. Once the camera
         detects that an object appears, the robot will move to the top of the object to ensure the object is at the
-        center of the camera's view for better dimension detection.</p>
-    <img class="img-responsive" src="../img/PACKING/1.png" alt="profile-pic" style="width:80%" />
+        center of the camera's view for better dimension detection.
+    </p>
+    <img class="img-responsive" src="../img/PACKING/1.png" alt="profile-pic" style="width:50%" />
     <br>
-    <h4><strong>Grasping</strong></h4>
+
+    <hr class="para-break" data-content="  Grasping  " id="intro">
     <p>To complete the grasping/placing process accurately and reliably, a custom gripper was designed, as well as the
         shape of the objects.</p>
     <p>The grasping process includes three steps:</p>
@@ -72,7 +77,8 @@
         was written in the <a href="https://github.com/JihaiZhao/Botrista">Making Pour Over Coffee with a Robot Arm</a>
         project.</p>
     <br>
-    <h4><strong>Packing</strong></h4>
+
+    <hr class="para-break" data-content="  Packing  " id="intro">
     <p>Here are some constraints in this project:</p>
     <ul>
         <li>All objects are rectangular.</li>
