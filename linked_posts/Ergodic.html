@@ -70,9 +70,12 @@
 
     <hr class="para-break" data-content="  Haptic-Guided Teleoperation  ">
     <p>
+        写个intro
+        For the hardware,
+    </p>
+    <p>
         As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling
-        to
-        control the slave robot motion via the master robot.
+        to control the slave robot motion via the master robot.
         To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html" ,
             target="_blank">libfranka library</a> which is a C++ library provided by Franka.
         For master robot I used the impedance control mode I implemented before (more detail can be find in this
@@ -99,6 +102,58 @@
         (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate
         probability density function
     </p>
+
+    <p>
+        <span style="font-family: 'Times New Roman', serif;">
+            $$ f_k(x) = \frac{1}{h_k} \prod_{i=1}^{d} \cos\left( \frac{k_i \pi}{L_i} x_i \right), $$
+        </span>
+    </p>
+    <p>
+        where <span style="font-family: 'Times New Roman', serif;">$h_k$</span> is the normalization term, such that the
+        function space norm of each basis function
+        <span style="font-family: 'Times New Roman', serif;">$\left[\int_{\mathcal{X}} f_k(x)^2
+            dx\right]^{\frac{1}{2}}$</span> is 1.
+    </p>
+
+    <p>
+        The normalized basis functions consist of a set of <em>orthonormal bases</em> in the infinite dimensional
+        function space. Thus, we can transform any function with the same domain (the search space) into a set of new
+        coordinates under these <em>orthonormal bases</em>.
+    </p>
+
+    <p>
+        Given a spatial probability density function <span style="font-family: 'Times New Roman', serif;">$p(x)$</span>,
+        we can transform this function as follows:
+    </p>
+
+    <p>
+        <span style="font-family: 'Times New Roman', serif;">
+            $$\
+            p(x) = \sum_{k}^{\infty} \left( \underbrace{\int_{\mathcal{X}} p(x) f_k(x) dx}_{\phi_k} \right) \cdot f_k(x)
+            \\
+            = \sum_{k}^{\infty} \phi_k \cdot f_k(x)
+            $$
+        </span>
+    </p>
+
+    <p>
+        where all the coefficients <span style="font-family: 'Times New Roman', serif;">$[\phi_k]$</span> consist of the
+        coordinates of the function <span style="font-family: 'Times New Roman', serif;">$p(x)$</span> under the bases
+        <span style="font-family: 'Times New Roman', serif;">$[f_k(x)]$</span>.
+    </p>
+
+    <p>
+        Though the equality only holds in theory when we have an infinite number of basis functions, in practice, we can
+        choose a finite number of basis functions to approximate an infinite dimensional function <span
+            style="font-family: 'Times New Roman', serif;">$p(x)$</span> within a finite dimensional Euclidean space (a
+        finite number of coefficients).
+    </p>
+
+    <p>
+        This transformation from an infinite dimensional function space to a finite dimensional vector space is crucial
+        for the ergodic metric. We now verify this transformation below.
+    </p>
+
 
     <div class="container">
         <div clsas="row">
