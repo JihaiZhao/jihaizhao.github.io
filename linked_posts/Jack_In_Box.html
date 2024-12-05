@@ -60,32 +60,29 @@
             Lagrangian equation of the system: L = KE - V. For kinetic energy, first get the body velocity of the box by calculating 
             their rigid body transformation to world frame. Next, convert this 4x4 matrix to a 6x1 vector and last calculate KE. 
             (I assume the center of the mass is the center of the geometry). Last, use the same method for the jack.
-        </p>
-        <p>$$ KE = \frac{1}{2}⋅ω^T⋅I⋅ω $$</p>
+        </p>$$ KE = \frac{1}{2}⋅ω^T⋅I⋅ω $$
+
         <p>
             For potential energy, get the y value of the box relative to the world frame and use the same method for the jack:
-        </p>
-        <p>$$ V = mgh $$</p>
-        <p>Euler-Lagrange:</p>
-        <p>$$ \frac{∂}{∂t}\frac{∂L}{∂\dot{q}} − \frac{∂L}{∂q} = F $$</p>
+        </p>$$ V = mgh $$
+
+        <p>Euler-Lagrange:</p>$$ \frac{∂}{∂t}\frac{∂L}{∂\dot{q}} − \frac{∂L}{∂q} = F $$
         <p>
             The constraints: There are a total of 16 constraints for this system. They are each edge of the jack reaching the four sides 
             of the box.
         </p>
         <p>
             The external force: I tried different magnitudes of force, and I found the two below work best for me.
-        </p>
-        <p>$$ F_y = m_{box} * g * 1.012 $$</p>
-        <p>$$ F_θ = m_{box} * g * 0.5 $$</p>
+        </p>$$\ F_y = m_{box} * g *1.012$$ $$\ F_theta = m_{box} * g * 0.5$$
         <p>The impact update law:</p>
-        <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:60%"/>
+        <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:40%"/>
         <p>
             The impact happened when one edge of the jack collided with one side of the box. P is the momentum; H is the Hamiltonian 
-            of the system. After defining the 16 constraints of the system, evaluate the related expressions at $ τ^+$ and $ τ^−$ and 
-            solve them for $ \dot{q}(τ+)$, and the results will be the impact update rules. With the symbolic solutions for impact update, 
+            of the system. After defining the 16 constraints of the system, evaluate the related expressions at $\ τ^+$ and $\ τ^−$ and 
+            solve them for $\ \dot{q}(τ+)$, and the results will be the impact update rules. With the symbolic solutions for impact update, 
             we can numerically evaluate them and define a function for the impact update in the simulation loop.
         </p>
-        <br><br>
+        <br>
 
         <hr class="para-break" data-content="  What Happened in Simulation  ">
         <p>

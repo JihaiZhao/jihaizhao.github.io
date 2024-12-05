@@ -69,22 +69,29 @@
     <br>
 
     <hr class="para-break" data-content="  Haptic-Guided Teleoperation  ">
-    <p>As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling to
+    <p>
+        As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling
+        to
         control the slave robot motion via the master robot.
         To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html" ,
             target="_blank">libfranka library</a> which is a C++ library provided by Franka.
         For master robot I used the impedance control mode I implemented before (more detail can be find in this
-        post,给连接). For the slave robot
-        I used a control loop in the libfranka model library. This control loop include two Callback functions for
-        sending joint-level torque commands and target joint positions.
+        post,给连接). For the slave robot I used a control loop in the libfranka model library.
+        This control loop include two Callback functions for sending joint-level torque commands and target joint
+        positions.
         The torque command was computed from joint impedance control law and the target joint positions were received
-        from the master Franka robot.
+        from the master Franka robot. For the communication between the master and slave robot, I used ROS2 subscription
+        and publisher to share the JointState information.
     </p>
-    <p>
-        Force Feedback Using Joint Angle Coupling
-    </p>
+    <img src="../img/ergodic/no_feedback.png" style="width:80%">
+
     <br>
-    <p>show equations and graphs</p>
+    <p>
+        To ensure a better perforce of teleoperation, I added Force Feedback. The calculated torque from the slave robot
+        will keep publishing and received by the master robot. Then the torque on the master robot is the combination of
+        impedance control and the torque reading.
+    </p>
+    <img src="../img/ergodic/force_feedback.png" style="width:80%">
 
     <hr class="para-break" data-content="  Density Map  ">
     <p>
@@ -101,7 +108,7 @@
                 <img src="../img/ergodic/data.png" style="width:80%">
             </div>
             <div class="col-lg-4 ">
-                <img src="../img/ergodic/pdf.png" style="width:60%">
+                <img src="../img/ergodic/pdf.png" style="width:80%">
             </div>
         </div>
     </div>
