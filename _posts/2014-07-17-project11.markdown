@@ -1,0 +1,13 @@
+---
+layout: default
+modal-id: 11
+title: Impedance Control
+short-caption: Impedance Control
+date: 2024-4-1
+img: botrista.gif
+project-date: 2024-4-1
+category: Computer Vision, Inverse Kinematics
+github: https://github.com/JihaiZhao/Botrista
+link: Impedance_Control
+description: 
+---
