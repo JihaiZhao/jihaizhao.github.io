@@ -1,99 +1,121 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/posts.css">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Jack Bouncing Simulation</title>
-    </head>
-    <nav class="navbar">
-        <a href="/.."><i class="fa fa-home" ></i></a>
-    </nav>  
 
-    <style>
-        /* Remove default padding and margin for ul */
-        ul {
-            width: 80%; /* Set width */
-            margin: auto; /* Center align ul */
-            padding-left: 0; /* Remove left padding */
-        }
-        /* Add left margin to li for alignment with <p> */
-        li {
-            margin-left: 20px; /* Adjust spacing as needed */
-        }
-    </style>
-    <body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px;">
-        <h1 class='title'>Jack Bouncing Simulation</h1>
-        
-        <hr class="para-break" data-content="  Video Demo  " id="intro">
-        <iframe 
-            width="750" 
-            height="450" 
-            src="https://www.youtube.com/embed/YN1Lk3Jp5u0" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-        </iframe>
-        <br>
+<head>
+    <title>Jack Bouncing Simulation</title>
+</head>
 
-        <hr class="para-break" data-content="  Overview  " id="intro">
-        <p>
-            The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the configuration and 
-            transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero initial velocity 
-            and zero theta for 10 seconds with a time step of 0.01s.
-        </p>
-        <br>
+<nav class="navbar">
+    <a href="/.."><i class="fa fa-home"></i></a>
+</nav>
 
-        <hr class="para-break" data-content="  Drawing of the System  ">
-        <img class="img-responsive" src="../img/me314/drawing.jpg" alt="Drawing of the system" style="width:60%"/>
-        <p>
-            Frame W is the world frame, frame A is the frame of the center of the box, frame B is the frame of the center of the jack. 
-            g_B1, g_B2, g_B3, g_B4 are the transformations from frame B to the four edges of the jack.
-        </p>
-        <br>
+<style>
+    /* Remove default padding and margin for ul */
+    ul {
+        width: 80%;
+        /* Set width */
+        margin: auto;
+        /* Center align ul */
+        padding-left: 0;
+        /* Remove left padding */
+        font-size: 18px;
+    }
 
-        <hr class="para-break" data-content="  Calculation Description  ">
-        <p>
-            Lagrangian equation of the system: L = KE - V. For kinetic energy, first get the body velocity of the box by calculating 
-            their rigid body transformation to world frame. Next, convert this 4x4 matrix to a 6x1 vector and last calculate KE. 
-            (I assume the center of the mass is the center of the geometry). Last, use the same method for the jack.
-        </p>$$ KE = \frac{1}{2}⋅ω^T⋅I⋅ω $$
+    /* Add left margin to li for alignment with <p> */
+    li {
+        margin-left: 20px;
+        /* Adjust spacing as needed */
+        font-size: 18px;
+    }
+</style>
 
-        <p>
-            For potential energy, get the y value of the box relative to the world frame and use the same method for the jack:
-        </p>$$ V = mgh $$
+<body>
+    <h1 class='title'>Jack Bouncing Simulation</h1>
 
-        <p>Euler-Lagrange:</p>$$ \frac{∂}{∂t}\frac{∂L}{∂\dot{q}} − \frac{∂L}{∂q} = F $$
-        <p>
-            The constraints: There are a total of 16 constraints for this system. They are each edge of the jack reaching the four sides 
-            of the box.
-        </p>
-        <p>
-            The external force: I tried different magnitudes of force, and I found the two below work best for me.
-        </p>$$\ F_y = m_{box} * g *1.012$$ $$\ F_theta = m_{box} * g * 0.5$$
-        <p>The impact update law:</p>
-        <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:40%"/>
-        <p>
-            The impact happened when one edge of the jack collided with one side of the box. P is the momentum; H is the Hamiltonian 
-            of the system. After defining the 16 constraints of the system, evaluate the related expressions at $\ τ^+$ and $\ τ^−$ and 
-            solve them for $\ \dot{q}(τ+)$, and the results will be the impact update rules. With the symbolic solutions for impact update, 
-            we can numerically evaluate them and define a function for the impact update in the simulation loop.
-        </p>
-        <br>
+    <hr class="para-break" data-content="  Video Demo  " id="intro">
+    <iframe width="750" height="450" src="https://www.youtube.com/embed/YN1Lk3Jp5u0" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+    <br>
 
-        <hr class="para-break" data-content="  What Happened in Simulation  ">
-        <p>
-            When the simulation begins, the jack falls because of gravity. Since I give a force in the positive y direction and a rotation 
-            force to the box, the box will not fall, and the box will start rotating slowly. When the jack hits the sides of the box, it will 
-            bounce back, and the direction depends on the angle of the sides it collides. The simulation looks reasonable to me, the jack 
-            will bounce back, and the direction is related to the angle of the sides it collides. Also, since I chose the box mass to be way 
-            heavier than the jack, the collision will not affect the performance of the box. The below picture shows the change of 6 related 
-            to time. It can further prove my work is reasonable. From y2, we can clearly see where collision happened. θ2 first increasing 
-            and then decreasing is also due to the collision.
-        </p>
-        <img class="img-responsive" src="../img/me314/changing.png" alt="Simulation Changes Over Time" style="width:60%"/>
-    </body>
+    <hr class="para-break" data-content="  Overview  " id="intro">
+    <p>
+        The goal of this project is to simulate a jack bouncing inside of a moving box. The drawing below shows the
+        configuration and
+        transformation of frames I used. For simulation, I simulate the jack starting at the center of the box with zero
+        initial velocity
+        and zero theta for 10 seconds with a time step of 0.01s.
+    </p>
+    <br>
+
+    <hr class="para-break" data-content="  Drawing of the System  ">
+    <img class="img-responsive" src="../img/me314/drawing.jpg" alt="Drawing of the system" style="width:60%" />
+    <p>
+        Frame W is the world frame, frame A is the frame of the center of the box, frame B is the frame of the center of
+        the jack.
+        g_B1, g_B2, g_B3, g_B4 are the transformations from frame B to the four edges of the jack.
+    </p>
+    <br>
+
+    <hr class="para-break" data-content="  Calculation Description  ">
+    <p>
+        Lagrangian equation of the system: L = KE - V. For kinetic energy, first get the body velocity of the box by
+        calculating
+        their rigid body transformation to world frame. Next, convert this 4x4 matrix to a 6x1 vector and last calculate
+        KE.
+        (I assume the center of the mass is the center of the geometry). Last, use the same method for the jack.
+    </p>$$\ KE = \frac{1}{2}⋅ω^T⋅I⋅ω$$
+
+    <p>
+        For potential energy, get the y value of the box relative to the world frame and use the same method for the
+        jack:
+    </p>$$ V = mgh $$
+
+    <p>Euler-Lagrange:</p>$$\ \frac{∂}{∂t}\frac{∂L}{∂\dot{q}} − \frac{∂L}{∂q} = F $$
+    <p>
+        The constraints: There are a total of 16 constraints for this system. They are each edge of the jack reaching
+        the four sides
+        of the box.
+    </p>
+    <p>
+        The external force: I tried different magnitudes of force, and I found the two below work best for me.
+    </p>$$\ \F_y = m_{box} * g *1.012$$ $$\ \F_theta = m_{box} * g * 0.5$$
+    <p>The impact update law:</p>
+    <img class="center" src="../img/me314/impact_law.png" alt="Impact Update Law" style="width:40%" />
+    <p>
+        The impact happened when one edge of the jack collided with one side of the box. P is the momentum; H is the
+        Hamiltonian
+        of the system. After defining the 16 constraints of the system, evaluate the related expressions at $\ τ^+$ and
+        $\ τ^−$ and
+        solve them for $\ \dot{q}(τ+)$, and the results will be the impact update rules. With the symbolic solutions for
+        impact update,
+        we can numerically evaluate them and define a function for the impact update in the simulation loop.
+    </p>
+    <br>
+
+    <hr class="para-break" data-content="  What Happened in Simulation  ">
+    <p>
+        When the simulation begins, the jack falls because of gravity. Since I give a force in the positive y direction
+        and a rotation
+        force to the box, the box will not fall, and the box will start rotating slowly. When the jack hits the sides of
+        the box, it will
+        bounce back, and the direction depends on the angle of the sides it collides. The simulation looks reasonable to
+        me, the jack
+        will bounce back, and the direction is related to the angle of the sides it collides. Also, since I chose the
+        box mass to be way
+        heavier than the jack, the collision will not affect the performance of the box. The below picture shows the
+        change of 6 related
+        to time. It can further prove my work is reasonable. From y2, we can clearly see where collision happened. θ2
+        first increasing
+        and then decreasing is also due to the collision.
+    </p>
+    <img class="img-responsive" src="../img/me314/changing.png" alt="Simulation Changes Over Time" style="width:60%" />
+</body>
+
 </html>

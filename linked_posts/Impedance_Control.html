@@ -21,18 +21,20 @@
         /* Center align ul */
         padding-left: 0;
         /* Remove left padding */
+        font-size: 18px;
     }
 
     /* Add left margin to li for alignment with <p> */
     li {
         margin-left: 20px;
         /* Adjust spacing as needed */
+        font-size: 18px;
     }
 </style>
 
 <style>
     table {
-        width: 100%;
+        width: 80%;
         border-collapse: collapse;
         text-align: center;
         margin-top: 20px;
@@ -71,10 +73,11 @@
         the user’s effort while maintaining stability and responsiveness. The implementation involves careful adjustment
         of the virtual mass, damping, and stiffness parameters to achieve a balance between compliance and accuracy.
     </p>
-    By leveraging impedance control, this project aims to improve the human-robot interface, making it suitable for
-    applications requiring physical interaction, such as collaborative tasks, medical assistance, and precision
-    manufacturing. This work demonstrates the potential of impedance-based strategies in advancing robotic systems
-    towards more intuitive and user-friendly designs.
+    <p>
+        By leveraging impedance control, this project aims to improve the human-robot interface, making it suitable for
+        applications requiring physical interaction, such as collaborative tasks, medical assistance, and precision
+        manufacturing. This work demonstrates the potential of impedance-based strategies in advancing robotic systems
+        towards more intuitive and user-friendly designs.
     </p>
 
     <br>
@@ -163,6 +166,10 @@
             </div>
         </div>
     </div>
+    
+    <p>
+        Use each impedance control mode and move in x, y, z direction seperately. get m and c.
+    </p>
 
     <table>
         <thead>
@@ -176,28 +183,11 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="3">Impedance Force X</td>
+                <td rowspan="3">Impedance Force</td>
                 <td rowspan="3">1</td>
                 <td>X</td>
                 <td>-1.42764592</td>
                 <td>1.0066388</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>-549.43929248</td>
-                <td>560.05743407</td>
-            </tr>
-            <tr>
-                <td>Z</td>
-                <td>-4.32081825</td>
-                <td>0.27458755</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Impedance Force Y</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>-2.77573051</td>
-                <td>-7.18156704</td>
             </tr>
             <tr>
                 <td>Y</td>
@@ -206,49 +196,15 @@
             </tr>
             <tr>
                 <td>Z</td>
-                <td>-7.24635991</td>
-                <td>11.27073121</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Impedance Force Z</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>2.64170139</td>
-                <td>-0.54388674</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>6.86100037</td>
-                <td>16.75501292</td>
-            </tr>
-            <tr>
-                <td>Z</td>
                 <td>8.94264416</td>
                 <td>13.59926614</td>
             </tr>
             <tr>
-                <td rowspan="3">Damping X</td>
+                <td rowspan="3">Damping</td>
                 <td rowspan="3">1</td>
                 <td>X</td>
                 <td>0.09225413</td>
                 <td>2.62787636</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>468.74803979</td>
-                <td>-94.62131789</td>
-            </tr>
-            <tr>
-                <td>Z</td>
-                <td>-2.88664432</td>
-                <td>0.99059744</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Damping Y</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>-0.60170896</td>
-                <td>10.00675342</td>
             </tr>
             <tr>
                 <td>Y</td>
@@ -257,49 +213,15 @@
             </tr>
             <tr>
                 <td>Z</td>
-                <td>-5.17567169</td>
-                <td>11.2130881</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Damping Z</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>0.67960921</td>
-                <td>1.78525069</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>-639.66503412</td>
-                <td>19.64419587</td>
-            </tr>
-            <tr>
-                <td>Z</td>
                 <td>1.24047087</td>
                 <td>13.94127596</td>
             </tr>
             <tr>
-                <td rowspan="3">Friction Compensation X</td>
+                <td rowspan="3">Friction Compensation</td>
                 <td rowspan="3">1</td>
                 <td>X</td>
                 <td>-3.21932284</td>
                 <td>1.68266821</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>87.22443115</td>
-                <td>-20.78258741</td>
-            </tr>
-            <tr>
-                <td>Z</td>
-                <td>-1.80215133</td>
-                <td>0.03092985</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Friction Compensation Y</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>-2.30864039</td>
-                <td>4.43373622</td>
             </tr>
             <tr>
                 <td>Y</td>
@@ -308,28 +230,11 @@
             </tr>
             <tr>
                 <td>Z</td>
-                <td>-7.6935222</td>
-                <td>12.50253785</td>
-            </tr>
-            <tr>
-                <td rowspan="3">Friction Compensation Z</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>0.17316719</td>
-                <td>1.12698805</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>-700.31829394</td>
-                <td>13.0922038</td>
-            </tr>
-            <tr>
-                <td>Z</td>
                 <td>12.08837463</td>
                 <td>12.94580011</td>
             </tr>
             <tr>
-                <td rowspan="3">White Light X</td>
+                <td rowspan="3">White Light</td>
                 <td rowspan="3">1</td>
                 <td>X</td>
                 <td>-8.55692881</td>
@@ -337,42 +242,8 @@
             </tr>
             <tr>
                 <td>Y</td>
-                <td>373.40985711</td>
-                <td>-218.93216669</td>
-            </tr>
-            <tr>
-                <td>Z</td>
-                <td>-0.56426139</td>
-                <td>4.48186901</td>
-            </tr>
-            <tr>
-                <td rowspan="3">White Light Y</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>-2.61048068</td>
-                <td>2.81289772</td>
-            </tr>
-            <tr>
-                <td>Y</td>
                 <td>12.06393627</td>
                 <td>0.78625834</td>
-            </tr>
-            <tr>
-                <td>Z</td>
-                <td>-5.27720989</td>
-                <td>16.0475445</td>
-            </tr>
-            <tr>
-                <td rowspan="3">White Light Z</td>
-                <td rowspan="3">1</td>
-                <td>X</td>
-                <td>0.30413101</td>
-                <td>-2.81648505</td>
-            </tr>
-            <tr>
-                <td>Y</td>
-                <td>1351.98617574</td>
-                <td>-81.88934595</td>
             </tr>
             <tr>
                 <td>Z</td>
