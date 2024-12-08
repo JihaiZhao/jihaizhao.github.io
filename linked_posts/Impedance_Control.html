@@ -30,6 +30,25 @@
     }
 </style>
 
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+</style>
 
 <body>
     <h1 class='title'>Impedance Control</h1>
@@ -45,19 +64,323 @@
         compliance and ease of use during manual guidance. By designing an appropriate virtual impedance model, the
         system can regulate the dynamic interaction between the user and the robotic arm, allowing smooth and effortless
         dragging motions.
-
+    </p>
+    <p>
         The robotic arm used in this project is the Franka Emika Panda, known for its precision and advanced control
         capabilities. The primary objective is to develop and fine-tune an impedance control framework that minimizes
         the user’s effort while maintaining stability and responsiveness. The implementation involves careful adjustment
         of the virtual mass, damping, and stiffness parameters to achieve a balance between compliance and accuracy.
-
-        By leveraging impedance control, this project aims to improve the human-robot interface, making it suitable for
-        applications requiring physical interaction, such as collaborative tasks, medical assistance, and precision
-        manufacturing. This work demonstrates the potential of impedance-based strategies in advancing robotic systems
-        towards more intuitive and user-friendly designs.
+    </p>
+    By leveraging impedance control, this project aims to improve the human-robot interface, making it suitable for
+    applications requiring physical interaction, such as collaborative tasks, medical assistance, and precision
+    manufacturing. This work demonstrates the potential of impedance-based strategies in advancing robotic systems
+    towards more intuitive and user-friendly designs.
     </p>
 
     <br>
+
+    <hr class="para-break" data-content="  Impedance Control  " id="intro">
+    <p>
+        Impedance control is a hybrid motion-force control strategy that governs the interaction between a robot and its
+        environment. It is widely used to regulate the dynamic relationship between force and motion, ensuring a
+        compliant and smooth interaction. The control law for impedance control is based on defining a desired
+        mass-spring-damper system, as expressed by the task-space behavior:
+    </p>
+    <p style="text-align: center;">
+        <strong>Equation:</strong>
+    </p>
+    <p style="text-align: center;">
+        <img src="https://latex.codecogs.com/svg.latex?M\ddot{x}+B\dot{x}+Kx=f_{\text{ext}}"
+            alt="M x'' + B x' + Kx = f_ext">
+    </p>
+    <ul>
+        <li><strong>x</strong>: Task-space configuration of the robot.</li>
+        <li><strong>M</strong>: Virtual mass matrix.</li>
+        <li><strong>B</strong>: Virtual damping matrix.</li>
+        <li><strong>K</strong>: Virtual stiffness matrix.</li>
+        <li><strong>f<sub>ext</sub></strong>: External force applied to the robot.</li>
+    </ul>
+    <p>
+        The parameters <strong>M</strong>, <strong>B</strong>, and <strong>K</strong> are tuned to achieve the desired
+        dynamic behavior of the robotic system. For instance:
+    </p>
+    <ul>
+        <li>High stiffness (<strong>K</strong>) reduces motion for a given applied force, making the robot behave
+            rigidly.</li>
+        <li>High damping (<strong>B</strong>) ensures smooth motion without oscillations.</li>
+        <li>Low virtual mass (<strong>M</strong>) increases responsiveness to external forces.</li>
+    </ul>
+    <h2>Key Concepts</h2>
+    <p>
+        The impedance control strategy can also be analyzed using its frequency response characteristics. The impedance
+        is defined as the transfer function between position perturbations and forces:
+    </p>
+    <p style="text-align: center;">
+        <img src="https://latex.codecogs.com/svg.latex?Z(s)=\frac{F(s)}{X(s)}=ms^2+bs+K"
+            alt="Z(s) = F(s)/X(s) = ms^2 + bs + K">
+    </p>
+    <p>
+        Here, <strong>Z(s)</strong> represents the system's impedance in the Laplace domain. The inverse of impedance,
+        known as <strong>admittance</strong>, is given by:
+    </p>
+    <p style="text-align: center;">
+        <img src="https://latex.codecogs.com/svg.latex?Y(s)=\frac{1}{Z(s)}=\frac{1}{ms^2+bs+K}" alt="Y(s) = 1 / Z(s)">
+    </p>
+    <p>
+        A high impedance system (e.g., with large <strong>K</strong> and <strong>B</strong>) resists motion disturbances
+        but responds minimally to external forces, whereas a low impedance system (e.g., with small <strong>M</strong>,
+        <strong>B</strong>, and <strong>K</strong>) is more compliant and allows greater motion for a given force. For
+        applications requiring user interaction, such as dragging a robotic arm, a compliant behavior is often desired
+        to make the interaction smooth and effortless.
+    </p>
+    <h2>Implementation</h2>
+    <p>
+        Impedance control can be implemented using feedback laws that map task-space positions or torques to forces. The
+        parameters <strong>M</strong>, <strong>B</strong>, and <strong>K</strong> are chosen to achieve the desired
+        behavior, ensuring stability and adaptability during interaction.
+    </p>
+
+    <p>
+        Me and Courtney implemented it based on <a href="https://frankaemika.github.io/docs/libfranka.html" ,
+            target="_blank">libfranka library</a> which is a C++ library provided by Franka. We implemented three
+        different modes and compare the perforce with the default one.
+    </p>
+
+
+    <hr class="para-break" data-content="  Performace Comparison  " id="intro">
+    <p>
+
+    </p>
+    <div class="container">
+        <div clsas="row">
+            <div class="col-lg-2 ">
+            </div>
+            <div class="col-lg-4 ">
+                <img src="../img/impedance/axia80.png" style="width:80%">
+            </div>
+            <div class="col-lg-4 ">
+                <img src="../img/impedance/setup.png" style="width:80%">
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Condition</th>
+                <th>Trial</th>
+                <th>Axis</th>
+                <th>m</th>
+                <th>c</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3">Impedance Force X</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-1.42764592</td>
+                <td>1.0066388</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>-549.43929248</td>
+                <td>560.05743407</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-4.32081825</td>
+                <td>0.27458755</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Impedance Force Y</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-2.77573051</td>
+                <td>-7.18156704</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>15.76363316</td>
+                <td>1.04373732</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-7.24635991</td>
+                <td>11.27073121</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Impedance Force Z</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>2.64170139</td>
+                <td>-0.54388674</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>6.86100037</td>
+                <td>16.75501292</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>8.94264416</td>
+                <td>13.59926614</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Damping X</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>0.09225413</td>
+                <td>2.62787636</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>468.74803979</td>
+                <td>-94.62131789</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-2.88664432</td>
+                <td>0.99059744</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Damping Y</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-0.60170896</td>
+                <td>10.00675342</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>6.83681977</td>
+                <td>-3.70447808</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-5.17567169</td>
+                <td>11.2130881</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Damping Z</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>0.67960921</td>
+                <td>1.78525069</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>-639.66503412</td>
+                <td>19.64419587</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>1.24047087</td>
+                <td>13.94127596</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Friction Compensation X</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-3.21932284</td>
+                <td>1.68266821</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>87.22443115</td>
+                <td>-20.78258741</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-1.80215133</td>
+                <td>0.03092985</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Friction Compensation Y</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-2.30864039</td>
+                <td>4.43373622</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>1.76315165</td>
+                <td>2.38112476</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-7.6935222</td>
+                <td>12.50253785</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Friction Compensation Z</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>0.17316719</td>
+                <td>1.12698805</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>-700.31829394</td>
+                <td>13.0922038</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>12.08837463</td>
+                <td>12.94580011</td>
+            </tr>
+            <tr>
+                <td rowspan="3">White Light X</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-8.55692881</td>
+                <td>3.82439509</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>373.40985711</td>
+                <td>-218.93216669</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-0.56426139</td>
+                <td>4.48186901</td>
+            </tr>
+            <tr>
+                <td rowspan="3">White Light Y</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>-2.61048068</td>
+                <td>2.81289772</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>12.06393627</td>
+                <td>0.78625834</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>-5.27720989</td>
+                <td>16.0475445</td>
+            </tr>
+            <tr>
+                <td rowspan="3">White Light Z</td>
+                <td rowspan="3">1</td>
+                <td>X</td>
+                <td>0.30413101</td>
+                <td>-2.81648505</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>1351.98617574</td>
+                <td>-81.88934595</td>
+            </tr>
+            <tr>
+                <td>Z</td>
+                <td>14.77014982</td>
+                <td>25.40289417</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 
