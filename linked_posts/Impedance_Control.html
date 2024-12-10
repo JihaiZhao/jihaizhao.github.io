@@ -36,7 +36,8 @@
     table {
         width: 80%;
         border-collapse: collapse;
-        text-align: center;
+        /* text-align: center; */
+        margin: auto;
         margin-top: 20px;
     }
 
@@ -144,20 +145,28 @@
     </p>
 
     <p>
-        Me and Courtney implemented it based on <a href="https://frankaemika.github.io/docs/libfranka.html" ,
-            target="_blank">libfranka library</a> which is a C++ library provided by Franka. We implemented three
+        Me and
+        <a href="
+        https://courtsmith77.github.io/" , target="_blank">Courtney</a>
+        <a href="
+            https://frankaemika.github.io/docs/libfranka.html" , target="_blank">libfranka library</a>
+        implemented it based on which is a C++
+        library provided by Franka. We implemented three
         different modes and compare the perforce with the default one.
+        写4个mode
     </p>
 
 
     <hr class="para-break" data-content="  Performace Comparison  " id="intro">
     <p>
-
+        A force/torque sensor <a href="
+            https://www.ati-ia.com/products/ft/ft_models.aspx?id=Axia80-M8" , target="_blank">Axia80-M8</a> has been used
+        to provide accurate reading about how much force and torque the user applied when using the impedance control mode 
+        to move the robot. Also 3D printed a customed handle which allows user drag the robot easier.
     </p>
+
     <div class="container">
         <div clsas="row">
-            <div class="col-lg-2 ">
-            </div>
             <div class="col-lg-4 ">
                 <img src="../img/impedance/axia80.png" style="width:80%">
             </div>
@@ -166,7 +175,7 @@
             </div>
         </div>
     </div>
-    
+
     <p>
         Use each impedance control mode and move in x, y, z direction seperately. get m and c.
     </p>
