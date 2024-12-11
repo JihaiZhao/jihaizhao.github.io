@@ -50,7 +50,8 @@
         definitions from a combination of positive and negative demonstrations. The algorithmic framework for task
         learning is based on the
         <strong>ergodic metric</strong>, a measure of the information content in motion. Finally, I demonstrated the
-        efficacy of this learning approach on (.......) using the 7-DoF Franka arm.
+        efficacy of this learning approach on real tasks including obstacle-avoidance, cleaning table, and object
+        balancing using the 7-DoF Franka arm.
     </p>
 
     <br>
@@ -162,34 +163,54 @@
         ODEs:
     </p>
 
-
-    <p>The standard formula for the optimal control problem is:</p>
-
-    <div class="equation">
-        <p>u<sup>*</sup>(t) s.t. = argmin<sub>u(t)</sub> &int;<sub>0</sub><sup>T</sup> l(x(t), u(t)) dt + m(x(T))</p>
-        <p>x˙(t) = f(x(t), u(t)), x(0) = x<sub>0</sub></p>
-    </div>
+    <p>
+        \[
+        u^*(t) \text{ s.t.} = \arg \min_{u(t)} \int_0^T l(x(t), u(t)) \, dt + m(x(T))
+        \]
+    </p>
+    <p>
+        \[
+        \dot{x}(t) = f(x(t), u(t)), \quad x(0) = x_0
+        \]
+    </p>
 
     <p>The iterative Linear Quadratic Regulator (iLQR) algorithm follows a gradient descent approach to find a locally
-        optimal solution. Given the current estimation of the control u(t), at each iteration, iLQR finds the descent
-        direction v(t) by solving the following ODEs:</p>
+        optimal solution. Given the current estimation of the control \( u(t) \), at each iteration, iLQR finds the
+        descent
+        direction \( v(t) \) by solving the following ODEs:</p>
 
-    <div class="equation">
-        <p>B(t)<sup>&#8594;</sup>p(t) + b(t) + R<sup>&#8594;</sup>v(t) = 0</p>
-        <p>p˙(t) = −A(t)<sup>&#8594;</sup>p(t) − a(t) − Q<sup>&#8594;</sup>z(t)</p>
-        <p>z˙(t) = A(t)z(t) + B(t)v(t)</p>
-    </div>
+    <p>
+        \[
+        B(t)^\top p(t) + b(t) + R^\top v(t) = 0
+        \]
+    </p>
+    <p>
+        \[
+        \dot{p}(t) = -A(t)^\top p(t) - a(t) - Q^\top z(t)
+        \]
+    </p>
+    <p>
+        \[
+        \dot{z}(t) = A(t) z(t) + B(t) v(t)
+        \]
+    </p>
 
     <p>The initial and terminal conditions are:</p>
-    <div class="equation">
-        <p>z(0) = 0, p(T) = dd<sub>x</sub> m(x(T))</p>
-    </div>
+
+    <p>
+        \[
+        z(0) = 0, \quad p(T) = \frac{\partial}{\partial x} m(x(T))
+        \]
+    </p>
 
     <p>Where:</p>
-    <div class="equation">
-        <p>A(t), B(t), a(t), b(t) = dd<sub>x</sub> f(x(t), u(t)) = dd<sub>u</sub> f(x(t), u(t)) = dd<sub>x</sub> l(x(t),
-            u(t)) = dd<sub>u</sub> l(x(t), u(t))</p>
-    </div>
+
+    <p>
+        \[
+        A(t), B(t), a(t), b(t) = \frac{\partial}{\partial x} f(x(t), u(t)) = \frac{\partial}{\partial u} f(x(t), u(t)) =
+        \frac{\partial}{\partial x} l(x(t), u(t)) = \frac{\partial}{\partial u} l(x(t), u(t))
+        \]
+    </p>
 
     <p>And Q<sub>z</sub> and R<sub>v</sub> are user-defined regularization parameters.</p>
 
@@ -197,23 +218,38 @@
         For the ergodic controller, we model the system as a double-integrator with state \( X = [x, y, \dot{x},
         \dot{y}] \) and \( U = [\ddot{x}, \ddot{y}]. \)
     </p>
+
     <img src="../img/ergodic/ergodic.png" style="width:80%">
 
-    <hr class="para-break" data-content="  Robot Arm Testing  ">
+    <hr class="para-break" data-content="  Robot Arm Testing And Results ">
     <p>
+        For
+        easy taks: positive demonstrations is good enough
+        harder tasks: need negative demonstrations
+
+        for balance task: tried negative demonstrations only, does not work very well. works best when both position and
+        negative demonstrations include (more negative demonstrations than positive). 
+
+
         Get trajectory from ergodic search and use MoveIt to control the robot. Tests completed include reaching a
         target location without colliding with an obstacle. For the cleaning task, success is evaluated as a continuous
         variable based on both workspace coverage and object avoidance. For the balance task:
+
+        obstacle-avoidance, cleaning table, and object
+        balancing
     </p>
 
     <hr class="para-break" data-content="  Related Links  ">
     <p>
         <a href="https://ieeexplore.ieee.org/document/8979376" target="_blank">Haptic-Guided Teleoperation of a 7-DoF
             Collaborative Robot Arm With an Identical Twin Master</a>
+    </p>
+    <p>
         <a href="https://ergodiccontrol.github.io/" target="_blank">ICRA 2024 Ergodic Control Workshop</a>
+    </p>
+    <p>
         <a href="https://ieeexplore.ieee.org/document/9561746" target="_blank">Ergodic imitation: Learning from what to
             do and what not to do</a>
-
     </p>
 
 </body>
