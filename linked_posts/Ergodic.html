@@ -57,7 +57,8 @@
 
     <hr class="para-break" data-content="  Haptic-Guided Teleoperation  ">
     <p>
-        For the hardware, I used two Franka Emika Robot. As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling
+        For the hardware, I used two Franka Emika Robot. As the baseline setup, I first implemented the “No Feedback”
+        condition which is direct joint-position coupling
         to control the slave robot motion via the master robot. To control the Franka Robot, I used <a
             href="https://frankaemika.github.io/docs/libfranka.html" target="_blank">libfranka library</a>, which is a
         C++ library provided by Franka. For the master robot, I used the impedance control mode I implemented before
@@ -81,6 +82,19 @@
     <p>
         Collecting data using haptic-guided teleoperation. Remember the location of the points, assign positive/negative
         labels using k-means clustering, and find the center of each cluster to generate a probability density function.
+    </p>
+
+    <p>
+        \[
+        X = [0, L_1] \times \cdots \times [0, L_d],
+        \]
+    </p>
+
+    <p>
+        where \( L_i \) is the boundary length of the \( i \)-th dimension. The normalized Fourier basis function is
+        defined over the search space. Denote a state within the search space as \( x = [x_1, \dots, x_d] \in X \), the
+        normalized Fourier basis function is characterized by a \( d \)-dimensional index vector \( k = [k_1, \dots,
+        k_d] \), where each entry of the vector is a whole number \( k_i \in [0, 1, 2, \dots, K] \):
     </p>
 
     <p>
@@ -148,6 +162,37 @@
         ODEs:
     </p>
 
+
+    <p>The standard formula for the optimal control problem is:</p>
+
+    <div class="equation">
+        <p>u<sup>*</sup>(t) s.t. = argmin<sub>u(t)</sub> &int;<sub>0</sub><sup>T</sup> l(x(t), u(t)) dt + m(x(T))</p>
+        <p>x˙(t) = f(x(t), u(t)), x(0) = x<sub>0</sub></p>
+    </div>
+
+    <p>The iterative Linear Quadratic Regulator (iLQR) algorithm follows a gradient descent approach to find a locally
+        optimal solution. Given the current estimation of the control u(t), at each iteration, iLQR finds the descent
+        direction v(t) by solving the following ODEs:</p>
+
+    <div class="equation">
+        <p>B(t)<sup>&#8594;</sup>p(t) + b(t) + R<sup>&#8594;</sup>v(t) = 0</p>
+        <p>p˙(t) = −A(t)<sup>&#8594;</sup>p(t) − a(t) − Q<sup>&#8594;</sup>z(t)</p>
+        <p>z˙(t) = A(t)z(t) + B(t)v(t)</p>
+    </div>
+
+    <p>The initial and terminal conditions are:</p>
+    <div class="equation">
+        <p>z(0) = 0, p(T) = dd<sub>x</sub> m(x(T))</p>
+    </div>
+
+    <p>Where:</p>
+    <div class="equation">
+        <p>A(t), B(t), a(t), b(t) = dd<sub>x</sub> f(x(t), u(t)) = dd<sub>u</sub> f(x(t), u(t)) = dd<sub>x</sub> l(x(t),
+            u(t)) = dd<sub>u</sub> l(x(t), u(t))</p>
+    </div>
+
+    <p>And Q<sub>z</sub> and R<sub>v</sub> are user-defined regularization parameters.</p>
+
     <p>
         For the ergodic controller, we model the system as a double-integrator with state \( X = [x, y, \dot{x},
         \dot{y}] \) and \( U = [\ddot{x}, \ddot{y}]. \)
@@ -160,6 +205,17 @@
         target location without colliding with an obstacle. For the cleaning task, success is evaluated as a continuous
         variable based on both workspace coverage and object avoidance. For the balance task:
     </p>
+
+    <hr class="para-break" data-content="  Related Links  ">
+    <p>
+        <a href="https://ieeexplore.ieee.org/document/8979376" target="_blank">Haptic-Guided Teleoperation of a 7-DoF
+            Collaborative Robot Arm With an Identical Twin Master</a>
+        <a href="https://ergodiccontrol.github.io/" target="_blank">ICRA 2024 Ergodic Control Workshop</a>
+        <a href="https://ieeexplore.ieee.org/document/9561746" target="_blank">Ergodic imitation: Learning from what to
+            do and what not to do</a>
+
+    </p>
+
 </body>
 
 </html>
