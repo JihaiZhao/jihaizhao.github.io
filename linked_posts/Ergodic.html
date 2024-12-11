@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/posts.css">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <head>
     <title>Ergodic Imitation with 7-DoF Franka Arm</title>
@@ -13,151 +16,125 @@
 </nav>
 
 <style>
-    /* Remove default padding and margin for ul */
     ul {
         width: 80%;
-        /* Set width */
         margin: auto;
-        /* Center align ul */
         padding-left: 0;
-        /* Remove left padding */
         font-size: 18px;
     }
 
-    /* Add left margin to li for alignment with <p> */
     li {
         margin-left: 20px;
-        /* Adjust spacing as needed */
         font-size: 18px;
     }
 </style>
-
 
 <body>
     <h1 class='title'>Ergodic Imitation with 7-DoF Franka Arm</h1>
 
     <hr class="para-break" data-content="  Video Demo  ">
-    <!-- <iframe width="600" height="450" src="https://www.youtube.com/embed/q7HbfBILOt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-         -->
 
     <hr class="para-break" data-content="  Overview  " id="intro">
     <p>
         The purpose of this project is to leverage <strong>ergodic imitation</strong> to learn both desirable and
-        undesirable behaviors.
-        To facilitate effective data collection, I first implemented an <strong>impedance control mode</strong> for a
-        7-DoF collaborative robotic arm
-        (Franka) in collaboration with Courtney. Subsequently, I developed a <strong>haptic-guided
-            teleoperation</strong> system for the Franka robot.
-        This system enables the user to control <strong>Franka 1</strong>, which operates in impedance control mode, and
-        couples its movements to
-        <strong>Franka 2</strong>, such that any motion of Franka 1 is mirrored by Franka 2.
+        undesirable behaviors. To facilitate effective data collection, I first implemented an <strong>impedance control
+            mode</strong> for a
+        7-DoF collaborative robotic arm (Franka) in collaboration with Courtney. Subsequently, I developed a
+        <strong>haptic-guided
+            teleoperation</strong> system for the Franka robot. This system enables the user to control <strong>Franka
+            1</strong>, which operates in impedance control mode, and couples its movements to <strong>Franka
+            2</strong>, such that any motion of Franka 1 is mirrored by Franka 2.
     </p>
     <p>
         Following this, I employed a <strong>learning-from-demonstration (LfD)</strong> approach to derive robust task
-        definitions from a combination
-        of positive and negative demonstrations. The algorithmic framework for task learning is based on the
-        <strong>ergodic metric</strong>, a measure
-        of the information content in motion. Finally, I demonstrated the efficacy of this learning approach on
-        (.......) using the 7-DoF Franka arm.
+        definitions from a combination of positive and negative demonstrations. The algorithmic framework for task
+        learning is based on the
+        <strong>ergodic metric</strong>, a measure of the information content in motion. Finally, I demonstrated the
+        efficacy of this learning approach on (.......) using the 7-DoF Franka arm.
     </p>
 
     <br>
 
     <hr class="para-break" data-content="  Haptic-Guided Teleoperation  ">
     <p>
-        写个intro
-        For the hardware,
-    </p>
-    <p>
-        As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling
-        to control the slave robot motion via the master robot.
-        To control the Franka Robot, I used <a href="https://frankaemika.github.io/docs/libfranka.html" ,
-            target="_blank">libfranka library</a> which is a C++ library provided by Franka.
-        For master robot I used the impedance control mode I implemented before (more detail can be find in this
-        post,给连接). For the slave robot I used a control loop in the libfranka model library.
-        This control loop include two Callback functions for sending joint-level torque commands and target joint
-        positions.
-        The torque command was computed from joint impedance control law and the target joint positions were received
-        from the master Franka robot. For the communication between the master and slave robot, I used ROS2 subscription
-        and publisher to share the JointState information.
+        For the hardware, I used two Franka Emika Robot. As the baseline setup, I first implemented the “No Feedback” condition which is direct joint-position coupling
+        to control the slave robot motion via the master robot. To control the Franka Robot, I used <a
+            href="https://frankaemika.github.io/docs/libfranka.html" target="_blank">libfranka library</a>, which is a
+        C++ library provided by Franka. For the master robot, I used the impedance control mode I implemented before
+        (more details can be found in this post). For the slave robot, I used a control loop in the libfranka model
+        library. This control loop includes two Callback functions for sending joint-level torque commands and target
+        joint positions. The torque command was computed from the joint impedance control law, and the target joint
+        positions were received from the master Franka robot. For the communication between the master and slave robot,
+        I used ROS2 subscription and publisher to share the JointState information.
     </p>
     <img src="../img/ergodic/no_feedback.png" style="width:80%">
 
     <br>
     <p>
-        To ensure a better perforce of teleoperation, I added Force Feedback. The calculated torque from the slave robot
-        will keep publishing and received by the master robot. Then the torque on the master robot is the combination of
+        To ensure better teleoperation performance, I added Force Feedback. The calculated torque from the slave robot
+        keeps publishing and is received by the master robot. Then the torque on the master robot is a combination of
         impedance control and the torque reading.
     </p>
     <img src="../img/ergodic/force_feedback.png" style="width:80%">
 
     <hr class="para-break" data-content="  Density Map  ">
     <p>
-        Collecting data using haptic-guided teleoperation. Remember the location of the points,
-        (give positive/negative labels) using k-means to do clustering. Find the center of each cluster and generate
-        probability density function
+        Collecting data using haptic-guided teleoperation. Remember the location of the points, assign positive/negative
+        labels using k-means clustering, and find the center of each cluster to generate a probability density function.
     </p>
 
     <p>
-        <span style="font-family: 'Times New Roman', serif;">
-            $$ f_k(x) = \frac{1}{h_k} \prod_{i=1}^{d} \cos\left( \frac{k_i \pi}{L_i} x_i \right), $$
-        </span>
-    </p>
-    <p>
-        where <span style="font-family: 'Times New Roman', serif;">$h_k$</span> is the normalization term, such that the
-        function space norm of each basis function
-        <span style="font-family: 'Times New Roman', serif;">$\left[\int_{\mathcal{X}} f_k(x)^2
-            dx\right]^{\frac{1}{2}}$</span> is 1.
+        \[
+        f_k(x) = \frac{1}{h_k} \prod_{i=1}^{d} \cos\left( \frac{k_i \pi}{L_i} x_i \right),
+        \]
     </p>
 
     <p>
-        The normalized basis functions consist of a set of <em>orthonormal bases</em> in the infinite dimensional
-        function space. Thus, we can transform any function with the same domain (the search space) into a set of new
-        coordinates under these <em>orthonormal bases</em>.
+        where \( h_k \) is the normalization term, ensuring the function space norm of each basis function \( \left[
+        \int_{\mathcal{X}} f_k(x)^2 dx \right]^{\frac{1}{2}} \) is 1.
     </p>
 
     <p>
-        Given a spatial probability density function <span style="font-family: 'Times New Roman', serif;">$p(x)$</span>,
-        we can transform this function as follows:
+        The normalized basis functions consist of a set of *orthonormal bases* in the infinite dimensional function
+        space. Thus, we can transform any function with the same domain (the search space) into a set of new coordinates
+        under these *orthonormal bases*.
     </p>
 
     <p>
-        <span style="font-family: 'Times New Roman', serif;">
-            $$\
-            p(x) = \sum_{k}^{\infty} \left( \underbrace{\int_{\mathcal{X}} p(x) f_k(x) dx}_{\phi_k} \right) \cdot f_k(x)
-            \\
-            = \sum_{k}^{\infty} \phi_k \cdot f_k(x)
-            $$
-        </span>
+        Given a spatial probability density function \( p(x) \), we can transform this function as follows:
     </p>
 
     <p>
-        where all the coefficients <span style="font-family: 'Times New Roman', serif;">$[\phi_k]$</span> consist of the
-        coordinates of the function <span style="font-family: 'Times New Roman', serif;">$p(x)$</span> under the bases
-        <span style="font-family: 'Times New Roman', serif;">$[f_k(x)]$</span>.
+        \[
+        p(x) = \sum_{k=1}^{\infty} \left( \underbrace{\int_{\mathcal{X}} p(x) f_k(x) dx}_{\phi_k} \right) \cdot f_k(x)
+        = \sum_{k=1}^{\infty} \phi_k \cdot f_k(x),
+        \]
+    </p>
+
+    <p>
+        where all the coefficients \( [\phi_k] \) consist of the coordinates of the function \( p(x) \) under the bases
+        \( [f_k(x)] \).
     </p>
 
     <p>
         Though the equality only holds in theory when we have an infinite number of basis functions, in practice, we can
-        choose a finite number of basis functions to approximate an infinite dimensional function <span
-            style="font-family: 'Times New Roman', serif;">$p(x)$</span> within a finite dimensional Euclidean space (a
-        finite number of coefficients).
+        choose a finite number of basis functions to approximate an infinite-dimensional function \( p(x) \) within a
+        finite-dimensional Euclidean space (a finite number of coefficients).
     </p>
 
     <p>
-        This transformation from an infinite dimensional function space to a finite dimensional vector space is crucial
+        This transformation from an infinite-dimensional function space to a finite-dimensional vector space is crucial
         for the ergodic metric. We now verify this transformation below.
     </p>
 
-
     <div class="container">
-        <div clsas="row">
-            <div class="col-lg-2 ">
+        <div class="row">
+            <div class="col-lg-2">
             </div>
-            <div class="col-lg-4 ">
+            <div class="col-lg-4">
                 <img src="../img/ergodic/data.png" style="width:80%">
             </div>
-            <div class="col-lg-4 ">
+            <div class="col-lg-4">
                 <img src="../img/ergodic/pdf.png" style="width:80%">
             </div>
         </div>
@@ -165,24 +142,23 @@
 
     <hr class="para-break" data-content="  Ergodic Search  ">
     <p>
-        it can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm
-        follows a gradient descent approach to find a locally optimal solution.
-        Given the current estimation of the control u(t) , at each iteration, iLQR finds the descent direction v(t) by
-        solving the following ODEs:
+        It can be considered as an optimal control problem. The iterative linear quadratic regular (iLQR) algorithm
+        follows a gradient descent approach to find a locally optimal solution. Given the current estimation of the
+        control \( u(t) \), at each iteration, iLQR finds the descent direction \( v(t) \) by solving the following
+        ODEs:
+    </p>
 
-        For the ergodic controller,
-        we model the system as a double-integrator with state X =
-        [x, y, ẋ, ẏ] and U = [ẍ, ÿ].
+    <p>
+        For the ergodic controller, we model the system as a double-integrator with state \( X = [x, y, \dot{x},
+        \dot{y}] \) and \( U = [\ddot{x}, \ddot{y}]. \)
     </p>
     <img src="../img/ergodic/ergodic.png" style="width:80%">
 
     <hr class="para-break" data-content="  Robot Arm Testing  ">
     <p>
-        Get trajectory from ergodic search and use moveit to control the robot.
-        test I finished: reaching a target location without colliding with an obstacle.
-        cleaning task: success m is evaluated as a continuous variable
-        based on both workspace coverage and object avoidance
-        balance task:
+        Get trajectory from ergodic search and use MoveIt to control the robot. Tests completed include reaching a
+        target location without colliding with an obstacle. For the cleaning task, success is evaluated as a continuous
+        variable based on both workspace coverage and object avoidance. For the balance task:
     </p>
 </body>
 

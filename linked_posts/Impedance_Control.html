@@ -114,7 +114,7 @@
         <li>High damping (<strong>B</strong>) ensures smooth motion without oscillations.</li>
         <li>Low virtual mass (<strong>M</strong>) increases responsiveness to external forces.</li>
     </ul>
-    <h2>Key Concepts</h2>
+    <h4>Key Concepts</h4>
     <p>
         The impedance control strategy can also be analyzed using its frequency response characteristics. The impedance
         is defined as the transfer function between position perturbations and forces:
@@ -137,7 +137,7 @@
         applications requiring user interaction, such as dragging a robotic arm, a compliant behavior is often desired
         to make the interaction smooth and effortless.
     </p>
-    <h2>Implementation</h2>
+    <h4>Implementation</h4>
     <p>
         Impedance control can be implemented using feedback laws that map task-space positions or torques to forces. The
         parameters <strong>M</strong>, <strong>B</strong>, and <strong>K</strong> are chosen to achieve the desired
@@ -148,25 +148,30 @@
         Me and
         <a href="
         https://courtsmith77.github.io/" , target="_blank">Courtney</a>
-        <a href="
-            https://frankaemika.github.io/docs/libfranka.html" , target="_blank">libfranka library</a>
-        implemented it based on which is a C++
+        implemented it based on <a href="
+            https://frankaemika.github.io/docs/libfranka.html" , target="_blank">libfranka library</a>which is a C++
         library provided by Franka. We implemented three
         different modes and compare the perforce with the default one.
-        写4个mode
+        We called them as damping mode, friction_compensation mode, and
+        the default mode (white-light mode). Damping mode is adding an extra negative damper to help user feel
+        weightless when moving the robot. Friction_compensation, is add constant joint impedance to compensate the
+        influence of friction in each joints.
     </p>
-
 
     <hr class="para-break" data-content="  Performace Comparison  " id="intro">
     <p>
         A force/torque sensor <a href="
-            https://www.ati-ia.com/products/ft/ft_models.aspx?id=Axia80-M8" , target="_blank">Axia80-M8</a> has been used
-        to provide accurate reading about how much force and torque the user applied when using the impedance control mode 
+        https://www.ati-ia.com/products/ft/ft_models.aspx?id=Axia80-M8" , target="_blank">Axia80-M8</a> has been used
+        to provide accurate reading about how much force and torque the user applied when using the impedance control
+        mode
         to move the robot. Also 3D printed a customed handle which allows user drag the robot easier.
     </p>
 
     <div class="container">
         <div clsas="row">
+            <div class="col-lg-2 ">
+            </div>
+
             <div class="col-lg-4 ">
                 <img src="../img/impedance/axia80.png" style="width:80%">
             </div>
@@ -177,7 +182,11 @@
     </div>
 
     <p>
-        Use each impedance control mode and move in x, y, z direction seperately. get m and c.
+        We purpose a dynamic equation to describe the force that the user used: $$ f(t) = m*a(t) - c * v(t) $$
+        Then we collect data using each impedance control mode and move in x, y, z direction seperately and finally
+        calculate m and c. We assume, the best mode should have a relative small m and c. and performance keep stable in
+        all direction. We also plot the 3D-plot to show the relationship between acceleration, velocity and force. The
+        conclusion is, damping mode is the best
     </p>
 
     <table>
