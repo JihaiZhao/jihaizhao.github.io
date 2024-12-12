@@ -221,23 +221,48 @@
 
     <img src="../img/ergodic/ergodic.png" style="width:80%">
 
-    <hr class="para-break" data-content="  Robot Arm Testing And Results ">
-    <p>
-        For
-        easy taks: positive demonstrations is good enough
-        harder tasks: need negative demonstrations
+    <hr class="para-break" data-content="  Robot Arm Testing And Results  ">
+    <p> 
+        For simpler tasks, positive demonstrations alone often suffice. These tasks usually involve straightforward
+        objectives where the robot learns desired behavior effectively through examples of correct actions. Positive
+        demonstrations provide the necessary guidance for the robot to replicate the expected behavior in similar
+        scenarios.
 
-        for balance task: tried negative demonstrations only, does not work very well. works best when both position and
-        negative demonstrations include (more negative demonstrations than positive). 
+        However, for more complex tasks, incorporating negative demonstrations becomes critical. These tasks typically
+        involve nuanced objectives or constraints, such as avoiding obstacles or handling edge cases where the robot
+        must explicitly understand what constitutes undesirable behavior. Negative demonstrations help the robot learn
+        to avoid these undesired outcomes, complementing the positive demonstrations.
 
+        In the case of the balance task, I experimented with using negative demonstrations exclusively. However, the
+        results were suboptimal, indicating that negative demonstrations alone could not fully guide the object to
+        achieve the desired balance. Through further experimentation, I found that the best performance was achieved
+        when both positive and negative demonstrations were used together. In particular, having a higher proportion of
+        negative demonstrations than positive ones proved to be most effective. This approach allowed the robot to
+        understand not only the correct balancing behavior but also the critical mistakes to avoid, resulting in
+        improved task performance.
 
-        Get trajectory from ergodic search and use MoveIt to control the robot. Tests completed include reaching a
-        target location without colliding with an obstacle. For the cleaning task, success is evaluated as a continuous
-        variable based on both workspace coverage and object avoidance. For the balance task:
+        To implement these learnings, we first generate the robot’s trajectory using an ergodic search algorithm. This
+        ensures that the trajectory optimally explores the workspace while respecting task-specific constraints. The
+        generated trajectory is then executed using the MoveIt framework to control the robot's movements.
 
-        obstacle-avoidance, cleaning table, and object
-        balancing
+        Several tests have been conducted to validate this approach. For instance, in a target-reaching task, the robot
+        successfully navigated to a specified location without colliding with any obstacles in the environment. In the
+        case of a cleaning task, the robot’s success was evaluated as a continuous variable. This evaluation considered
+        both workspace coverage (the percentage of the area cleaned) and object avoidance (ensuring no unintended
+        collisions occurred during the task). This dual evaluation metric helped ensure that the robot not only covered
+        the cleaning area effectively but also operated safely within the workspace.
+
+        For the balance task, the results were analyzed with similar rigor. The inclusion of both positive and negative
+        demonstrations—especially with a higher emphasis on negative demonstrations—proved to be a robust strategy. This
+        method allowed the robot to learn a nuanced understanding of balancing dynamics, leading to more consistent and
+        reliable performance across different scenarios.
     </p>
+    <p>Here is a GIF showing successful finished balance task using both positive and negative demonstrations:</p>
+    <img class="img-responsive" src="../img/ergodic/success.gif" alt="profile-pic" style="width:80%" />
+
+    <p>Here is a GIF showing unsuccessful balance task using only negative demonstrations:</p>
+    <img class="img-responsive" src="../img/ergodic/fail.gif" alt="profile-pic" style="width:80%" />
+
 
     <hr class="para-break" data-content="  Related Links  ">
     <p>
@@ -250,6 +275,10 @@
     <p>
         <a href="https://ieeexplore.ieee.org/document/9561746" target="_blank">Ergodic imitation: Learning from what to
             do and what not to do</a>
+    </p>
+    <p>
+        <a href="https://drive.google.com/drive/folders/10qYQs4T3lkX2xDxHPqyGXmaPh4I1mcYz?usp=sharing" target="_blank">Related Data</a>
+        <li><p>This google drive includes all data I collected for three different tasks</p></li>
     </p>
 
 </body>

@@ -5,7 +5,11 @@
 <link rel="stylesheet" type="text/css" href="css/posts.css">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impedance Control</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <nav class="navbar">
@@ -62,23 +66,32 @@
 
     <hr class="para-break" data-content="  Overview  " id="intro">
     <p>
-        In modern robotics, achieving seamless human-robot interaction is a critical goal for enabling intuitive and
-        effective operation. This project focuses on implementing impedance control for a robotic arm to enhance its
-        compliance and ease of use during manual guidance. By designing an appropriate virtual impedance model, the
-        system can regulate the dynamic interaction between the user and the robotic arm, allowing smooth and effortless
-        dragging motions.
+        In modern robotics, achieving seamless human-robot interaction is essential for intuitive and effective
+        operation.
+        This project focuses on implementing impedance control for the Franka Emika Panda robotic arm to enhance
+        compliance
+        and ease of use during manual guidance. By designing an optimized virtual impedance model, the system regulates
+        the
+        dynamic interaction between the user and the robotic arm, enabling smooth and effortless dragging motions.
     </p>
     <p>
-        The robotic arm used in this project is the Franka Emika Panda, known for its precision and advanced control
-        capabilities. The primary objective is to develop and fine-tune an impedance control framework that minimizes
-        the user’s effort while maintaining stability and responsiveness. The implementation involves careful adjustment
-        of the virtual mass, damping, and stiffness parameters to achieve a balance between compliance and accuracy.
+        The primary objective is to fine-tune the impedance control framework to minimize user effort while maintaining
+        stability and responsiveness. This involves carefully adjusting virtual mass, damping, and stiffness parameters
+        to
+        strike a balance between compliance and precision. Leveraging the Panda arm’s advanced control capabilities
+        ensures
+        high performance and adaptability.
     </p>
     <p>
-        By leveraging impedance control, this project aims to improve the human-robot interface, making it suitable for
-        applications requiring physical interaction, such as collaborative tasks, medical assistance, and precision
-        manufacturing. This work demonstrates the potential of impedance-based strategies in advancing robotic systems
-        towards more intuitive and user-friendly designs.
+        This work establishes a solid foundation for future projects exploring advanced human-robot interaction
+        techniques. By refining impedance control strategies, subsequent research can address more complex applications,
+        such as adaptive assistance in dynamic environments, autonomous collaboration, and advanced manipulation tasks.
+        These advancements will further enhance the intuitiveness and functionality of robotic systems.
+    </p>
+
+    <p>
+        This project was done by me and <a href="
+        https://courtsmith77.github.io/" , target="_blank">Courtney</a>
     </p>
 
     <br>
@@ -163,8 +176,7 @@
         A force/torque sensor <a href="
         https://www.ati-ia.com/products/ft/ft_models.aspx?id=Axia80-M8" , target="_blank">Axia80-M8</a> has been used
         to provide accurate reading about how much force and torque the user applied when using the impedance control
-        mode
-        to move the robot. Also 3D printed a customed handle which allows user drag the robot easier.
+        mode to move the robot. Also 3D printed a customed handle which allows user drag the robot easier.
     </p>
 
     <div class="container">
@@ -182,7 +194,15 @@
     </div>
 
     <p>
-        We purpose a dynamic equation to describe the force that the user used: \( f(t) = m*a(t) - c * v(t) \)
+        For data collection, we first need to modify the ip-address of the ft sensor, Franka, and station of Franka, to
+        make sure they are able to communicate with each other. Then we used a <a href="
+        https://github.com/gbartyzel/ros2_net_ft_driver" , target="_blank">Net F/T Sensor Driver</a> to launch the
+        controller and ros2 bag to record data. For robot data, it been saved as csv file when we drag it using
+        impedance control. We also wrote a python pipeline for data processing and analyzing.
+    </p>
+    <p>
+        To find the best mode, We purpose a dynamic equation to describe the force that the user used: \( f(t) = m*a(t)
+        - c * v(t) \)
         Then we collect data using each impedance control mode and move in x, y, z direction seperately and finally
         calculate m and c. We assume, the best mode should have a relative small m and c. and performance keep stable in
         all direction. We also plot the 3D-plot to show the relationship between acceleration, velocity and force. The
@@ -269,6 +289,14 @@
     <hr class="para-break" data-content="  Related Links  ">
     <p>
         <a href="https://hades.mech.northwestern.edu/index.php/Modern_Robotics" target="_blank">Modern Robotics</a>
+    </p>
+    <p>
+        <a href="https://drive.google.com/drive/folders/1Cd1bXmyaMKERnyWroYt86HQrjzIhuhA_?usp=sharing"
+            target="_blank">Related Data</a>
+        <li>
+            <p>This google drive includes all data We collected by F/T sensor and Franka for analyzing the performance
+                of different impedance control mode</p>
+        </li>
     </p>
 
 </body>
