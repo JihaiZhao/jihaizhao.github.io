@@ -84,7 +84,9 @@
         Collecting data using haptic-guided teleoperation. Remember the location of the points, assign positive/negative
         labels using k-means clustering, and find the center of each cluster to generate a probability density function.
     </p>
-
+    <P>
+        Following is the pipeline of generating density map. First, need to define the workspace
+    </P>
     <p>
         \[
         X = [0, L_1] \times \cdots \times [0, L_d],
@@ -110,13 +112,7 @@
     </p>
 
     <p>
-        The normalized basis functions consist of a set of *orthonormal bases* in the infinite dimensional function
-        space. Thus, we can transform any function with the same domain (the search space) into a set of new coordinates
-        under these *orthonormal bases*.
-    </p>
-
-    <p>
-        Given a spatial probability density function \( p(x) \), we can transform this function as follows:
+        Given a spatial probability density function \( p(x) \), I can transform this function as follows:
     </p>
 
     <p>
@@ -174,10 +170,12 @@
         \]
     </p>
 
-    <p>The iterative Linear Quadratic Regulator (iLQR) algorithm follows a gradient descent approach to find a locally
+    <p>
+        The iterative Linear Quadratic Regulator (iLQR) algorithm follows a gradient descent approach to find a locally
         optimal solution. Given the current estimation of the control \( u(t) \), at each iteration, iLQR finds the
         descent
-        direction \( v(t) \) by solving the following ODEs:</p>
+        direction \( v(t) \) by solving the following ODEs:
+    </p>
 
     <p>
         \[
@@ -215,7 +213,7 @@
     <p>And Q<sub>z</sub> and R<sub>v</sub> are user-defined regularization parameters.</p>
 
     <p>
-        For the ergodic controller, we model the system as a double-integrator with state \( X = [x, y, \dot{x},
+        For the ergodic controller, I model the system as a double-integrator with state \( X = [x, y, \dot{x},
         \dot{y}] \) and \( U = [\ddot{x}, \ddot{y}]. \)
     </p>
 
@@ -227,12 +225,13 @@
         objectives where the robot learns desired behavior effectively through examples of correct actions. Positive
         demonstrations provide the necessary guidance for the robot to replicate the expected behavior in similar
         scenarios.
-
-        However, for more complex tasks, incorporating negative demonstrations becomes critical. These tasks typically
-        involve nuanced objectives or constraints, such as avoiding obstacles or handling edge cases where the robot
-        must explicitly understand what constitutes undesirable behavior. Negative demonstrations help the robot learn
+    </p>
+    <p>
+        However, for more complex tasks like cleaning desk, incorporating negative demonstrations becomes critical. These tasks typically
+        involve nuanced objectives or constraints and negative demonstrations help the robot learn
         to avoid these undesired outcomes, complementing the positive demonstrations.
-
+    </p>
+    <p>
         In the case of the balance task, I experimented with using negative demonstrations exclusively. However, the
         results were suboptimal, indicating that negative demonstrations alone could not fully guide the object to
         achieve the desired balance. Through further experimentation, I found that the best performance was achieved
@@ -240,23 +239,29 @@
         negative demonstrations than positive ones proved to be most effective. This approach allowed the robot to
         understand not only the correct balancing behavior but also the critical mistakes to avoid, resulting in
         improved task performance.
-
-        To implement these learnings, we first generate the robot’s trajectory using an ergodic search algorithm. This
+    </p>
+    <br>
+    <p>
+        To implement these learnings, I first generate the robot’s trajectory using an ergodic search algorithm. This
         ensures that the trajectory optimally explores the workspace while respecting task-specific constraints. The
         generated trajectory is then executed using the MoveIt framework to control the robot's movements.
-
+    <p>
         Several tests have been conducted to validate this approach. For instance, in a target-reaching task, the robot
         successfully navigated to a specified location without colliding with any obstacles in the environment. In the
         case of a cleaning task, the robot’s success was evaluated as a continuous variable. This evaluation considered
         both workspace coverage (the percentage of the area cleaned) and object avoidance (ensuring no unintended
         collisions occurred during the task). This dual evaluation metric helped ensure that the robot not only covered
         the cleaning area effectively but also operated safely within the workspace.
-
+    </p>
+    <p>
         For the balance task, the results were analyzed with similar rigor. The inclusion of both positive and negative
         demonstrations—especially with a higher emphasis on negative demonstrations—proved to be a robust strategy. This
         method allowed the robot to learn a nuanced understanding of balancing dynamics, leading to more consistent and
         reliable performance across different scenarios.
     </p>
+    
+    <br>
+
     <p>Here is a GIF showing successful finished balance task using both positive and negative demonstrations:</p>
     <img class="img-responsive" src="../img/ergodic/success.gif" alt="profile-pic" style="width:80%" />
 
@@ -278,7 +283,9 @@
     </p>
     <p>
         <a href="https://drive.google.com/drive/folders/10qYQs4T3lkX2xDxHPqyGXmaPh4I1mcYz?usp=sharing" target="_blank">Related Data</a>
-        <li><p>This google drive includes all data I collected for three different tasks</p></li>
+        <ul>
+            <li>This google drive includes all data I collected for three different tasks</li>
+        </ul>
     </p>
 
 </body>
