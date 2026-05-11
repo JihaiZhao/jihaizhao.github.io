@@ -21,6 +21,7 @@ about: |
   I'm currently a Master's student in Robotics at <strong>Northwestern University</strong>.
   My main interests are <strong>SLAM</strong>, <strong>machine learning</strong>, and <strong>computer vision</strong>.
 
+# Resume link gets ?v=<build unix time> so browsers/CDNs fetch a new copy after each deploy.
 resume_url: img/Jihai_CV.pdf
 profile_image: img/profile.jpg
 
