@@ -375,25 +375,34 @@ a:hover { color: var(--accent); }
   gap: 20px 28px;
   align-items: start;
 }
-.timeline-link {
-  color: inherit;
+.timeline-details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text);
   text-decoration: none;
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  margin: -10px -12px;
-  transition: background 0.18s ease, transform 0.18s ease;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
-.timeline-link:hover {
+.timeline-details-link i { font-size: 11px; transition: transform 0.18s ease; }
+.timeline-details-link:hover {
   background: var(--bg-soft);
+  box-shadow: var(--shadow-md);
   transform: translate(-1px, -1px);
 }
-.timeline-link:focus-visible {
+.timeline-details-link:hover i { transform: translateX(2px); }
+.timeline-details-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-}
-.timeline-link:hover .timeline-role,
-.timeline-link:hover .timeline-org {
-  color: var(--accent-hover);
 }
 .timeline-period {
   font-family: var(--font-mono);

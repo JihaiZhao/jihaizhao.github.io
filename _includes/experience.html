@@ -11,13 +11,14 @@
         {% endif %}
       </div>
       {% if e.href %}
-      <a class="timeline-main timeline-link" href="{{ e.href }}">
+      <div class="timeline-main">
         <div class="timeline-period">{{ e.period }}</div>
         <div class="timeline-body">
           <h3 class="timeline-role">{{ e.role }} <span class="timeline-org">· {{ e.org }}</span></h3>
           <p class="timeline-detail">{{ e.detail }}</p>
+          <a href="{{ e.href }}" class="timeline-details-link">Details <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-      </a>
+      </div>
       {% else %}
       <div class="timeline-main">
         <div class="timeline-period">{{ e.period }}</div>
