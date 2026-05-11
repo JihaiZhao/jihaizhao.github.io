@@ -3,15 +3,4 @@
   <div class="about-body">
     {{ site.about | markdownify }}
   </div>
-
-  <div class="skills">
-    {% for group in site.skills %}
-    <div class="skill-group">
-      <h3 class="skill-group-title">{{ group.group }}</h3>
-      <ul class="tag-list">
-        {% for item in group.items %}<li class="tag">{{ item }}</li>{% endfor %}
-      </ul>
-    </div>
-    {% endfor %}
-  </div>
 </section>

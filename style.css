@@ -264,46 +264,6 @@ a:hover { color: var(--accent); }
 .about-body p { margin: 0 0 16px; }
 .about-body strong { color: var(--text); font-weight: 600; }
 
-/* Skills */
-.skills {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-.skill-group {
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-}
-.skill-group-title {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin: 0 0 10px;
-}
-.tag-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.tag {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--bg);
-  color: var(--border-strong);
-  border: 1px solid var(--border);
-}
-
 /* Experience timeline */
 .timeline {
   list-style: none;

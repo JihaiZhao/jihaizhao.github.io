@@ -24,15 +24,6 @@ about: |
 resume_url: img/Jihai_CV.pdf
 profile_image: img/profile.jpg
 
-# Skills (rendered as tag groups)
-skills:
-  - group: Software
-    items: [Python, C++, C, MATLAB/Simulink, Linux, Git, CMake, TensorFlow, R, Arduino]
-  - group: Robotics
-    items: [ROS, ROS 2, OpenCV, SLAM, MoveIt, Rviz, Gazebo, Intel RealSense, Robot Kinematics]
-  - group: Hardware
-    items: [SolidWorks, Onshape, 3D Printing]
-
 # Experience timeline (newest first). logo: path under site root; icon: Font Awesome class for roles without a mark.
 experience:
   - role: Robotics Software Engineer
