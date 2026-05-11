@@ -1,0 +1,30 @@
+<section id="projects" class="section">
+  <h2 class="section-title"><span class="num">03.</span> Projects</h2>
+  <div class="project-grid">
+    {% assign sorted = site.posts | sort: 'date' | reverse %}
+    {% for post in sorted %}
+    {% assign summary = site.project_summaries[post.link] %}
+    <article class="project-card">
+      <a class="project-thumb" href="/linked_posts/{{ post.link }}.html" aria-label="{{ post.title }}">
+        <img src="/img/portfolio/{{ post.img }}" alt="{{ post.title }}" loading="lazy">
+      </a>
+      <div class="project-body">
+        <h3 class="project-title">
+          <a href="/linked_posts/{{ post.link }}.html">{{ post.title }}</a>
+        </h3>
+        {% if post.category %}<p class="project-category">{{ post.category | replace: ', ', ' · ' }}</p>{% endif %}
+        {% if summary %}<p class="project-summary">{{ summary }}</p>{% endif %}
+        <div class="project-links">
+          {% if post.github and post.github != "" %}
+          <a href="{{ post.github }}" target="_blank" rel="noopener" aria-label="GitHub repository"><i class="fa-brands fa-github"></i></a>
+          {% endif %}
+          {% if post.youtube and post.youtube != "" %}
+          <a href="{{ post.youtube }}" target="_blank" rel="noopener" aria-label="Video"><i class="fa-brands fa-youtube"></i></a>
+          {% endif %}
+          <a href="/linked_posts/{{ post.link }}.html" class="project-more" aria-label="Project details">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

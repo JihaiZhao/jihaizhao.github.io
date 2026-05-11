@@ -1,64 +1,80 @@
 # Site settings
 title: Jihai Zhao
-email: your-email@domain.com
+tagline: Robotics Engineer
+email: jihai518@gmail.com
 url: https://jihaizhao.github.io
-description: "MS in Robotics @ Northwestern"
-keywords: "your keywords, separated by commas"
-skills: "MS in Robotics @ Northwestern"
-meta_author: Zhao Jihai
+description: "Jihai Zhao — Robotics Engineer. MS Robotics @ Northwestern. SLAM, manipulation, computer vision."
+keywords: "robotics, SLAM, computer vision, manipulation, ROS, Northwestern"
+meta_author: Jihai Zhao
 
-# Google webmaster tools
-google_verify:
+# About / hero
+hero:
+  name: Jihai Zhao
+  role: Robotics Engineer
+  blurb: MS Robotics @ Northwestern. I build robots that perceive, plan, and manipulate — SLAM, computer vision, and dexterous manipulation.
 
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+about: |
+  I graduated from <strong>Ohio State University</strong> in 2023 with a B.S. in Mechanical Engineering and a minor in Computer Science.
+  Through robotics projects in undergrad I picked up path planning and control for differential-drive mobile robots,
+  designed a robotic arm, and applied deep learning algorithms to perception tasks.
 
-# Contact form:
-# - static : pass through formspree.io to validate email sending
-# - disqus : replace contact form by disqus thread
-# - comment the line below if you want to stick with the default PHP contact form
-contact: static
+  I'm currently a Master's student in Robotics at <strong>Northwestern University</strong>.
+  My main interests are <strong>SLAM</strong>, <strong>machine learning</strong>, and <strong>computer vision</strong>.
 
-# If you use disqus you need disqus shortname
-# https://help.disqus.com/customer/portal/articles/466208
-disqus_shortname: myshortname
+resume_url: img/Jihai_CV.pdf
+profile_image: img/profile.jpg
 
-# Color settings (hex-codes without the leading hash-tag)
-color:
-  primary: 4e2a84 #80B3FF
-  primary-rgb: "78,42,132" #"128,179,255"
-  secondary: 2c3e50 #FD6E8A
-  secondary-dark: 233140 #A2122F
+# Skills (rendered as tag groups)
+skills:
+  - group: Software
+    items: [Python, C++, C, MATLAB/Simulink, Linux, Git, CMake, TensorFlow, R, Arduino]
+  - group: Robotics
+    items: [ROS, ROS 2, OpenCV, SLAM, MoveIt, Rviz, Gazebo, Intel RealSense, Robot Kinematics]
+  - group: Hardware
+    items: [SolidWorks, Onshape, 3D Printing]
 
-# Footer settings
-footer:
-  copyright: Jihai Zhao
-  location: Location
-  social: More about Me
-  Skills: Skills
+# Experience timeline
+experience:
+  - role: MS in Robotics
+    org: Northwestern University
+    period: 2023 — 2025
+    detail: Coursework and research in SLAM, manipulation, machine learning, and computer vision.
+  - role: B.S. Mechanical Engineering, Minor in CS
+    org: The Ohio State University
+    period: 2019 — 2023
+    detail: Path planning and control for mobile robots; robotic arm design; deep learning for perception.
 
-# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+# Project summaries (keyed by post 'link' field)
+project_summaries:
+  Ergodic: "Leveraged ergodic imitation to learn from both positive and negative demonstrations. Built a haptic-guided teleoperation rig where one 7-DoF Franka in impedance mode is mirrored by a second Franka, then trained robust task models with the ergodic metric — a measure of information content in motion."
+  Impedance_Control: "Implemented impedance control on a 7-DoF Franka Emika collaborative arm. Compliant interaction enables safe contact with humans and objects, and serves as the substrate for downstream haptic teleoperation and learning-from-demonstration work."
+  packing: "Solved the 3D bin-packing optimization problem on a Franka Emika Panda. Computer vision detects object dimension and pose; MoveIt2 plans collision-free trajectories that pack items efficiently into a container while minimizing wasted space."
+  EKF_SLAM: "Built an Extended Kalman Filter SLAM stack from scratch in C++ as a set of ROS packages — turtlelib (SE(2) math), odometry, sensor models, and EKF estimation — validated in simulation on a TurtleBot navigating a landmark-rich environment."
+  Botrista: "Used a Franka Emika Panda to brew pour-over coffee end-to-end. Computer vision with AprilTags localizes each tool; a custom MoveIt wrapper drives a multi-step recipe (grind → kettle → pour → discard). Built with a team of five over three weeks."
+  KUKA: "Trajectory planning, odometry, and feedforward + feedback control for a KUKA youBot — a mecanum-wheel mobile base with a 5R arm. The robot picks up a block at a known pose, transports it across the workspace, and places it at a target location."
+  Jack_In_Box: "Simulated a jack bouncing inside a moving box from first principles. Derived configuration frames and Lagrangian dynamics, then integrated the equations of motion over a 10 s horizon at a 0.01 s timestep, capturing collision and contact behavior."
+  Robot_Pen_Stealer: "Tracked a purple pen in 3D with an Intel RealSense depth camera and commanded an Interbotix arm via the xs toolbox to grasp it in real time. Inverse kinematics maps the live target pose to joint commands for closed-loop pursuit."
+  RRT: "Implemented Rapidly-Exploring Random Trees for path planning from scratch — tree growth, collision checking, and goal biasing — and demonstrated the algorithm on multi-obstacle 2D maps with both basic and goal-biased variants."
+
+# Social
 social:
-  - title: linkedin
-    url: https://www.linkedin.com/in/jihai-zhao-21b6b7204/
   - title: github
+    label: GitHub
     url: https://github.com/JihaiZhao
-
-# Postal address (add as many lines as necessary)
-address:
-  - line: 1402 1/2 Central Street
-  - line: Evanston, IL 60201
-
-# Credits content
-Skills: '<p>Software: Python, C++, C, MATLAB/Simulink, Linux, Git, Unit Testing, CMake, TensorFlow, R, Arduino </p>
-         <p>Robotics: Robot Operating System (ROS/ROS 2), Computer Vision, OpenCV, Simultaneous Localization and Mapping(SLAM), MoveIt, Rviz, Gazebo, Intel RealSense, Robot Kinematics</p>
-         <p>Hardware: CAD (SolidWorks/Onshape), 3D Printing </p>'
+    icon: fa-brands fa-github
+  - title: linkedin
+    label: LinkedIn
+    url: https://www.linkedin.com/in/jihai-zhao-21b6b7204/
+    icon: fa-brands fa-linkedin
+  - title: email
+    label: Email
+    url: mailto:jihai518@gmail.com
+    icon: fa-solid fa-envelope
 
 # Build settings
 markdown: kramdown
 permalink: pretty
 
-#for posts
 defaults:
   - scope:
       path: ""

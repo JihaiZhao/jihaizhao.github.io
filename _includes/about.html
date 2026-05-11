@@ -1,24 +1,17 @@
-<section class="success" id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>About</h2>
-        <hr class="star-light">
-      </div>
+<section id="about" class="section">
+  <h2 class="section-title"><span class="num">01.</span> About</h2>
+  <div class="about-body">
+    {{ site.about | markdownify }}
+  </div>
+
+  <div class="skills">
+    {% for group in site.skills %}
+    <div class="skill-group">
+      <h3 class="skill-group-title">{{ group.group }}</h3>
+      <ul class="tag-list">
+        {% for item in group.items %}<li class="tag">{{ item }}</li>{% endfor %}
+      </ul>
     </div>
-    <div class="row"> 
-      <div class="col-lg-6 text-center">
-        <img class="img-responsive" src="img/profile.jpg" alt="profile-pic" />
-      </div>
-      <div class="col-lg-6 text-left">
-        <p>I graduated from Ohio State University in 2023 with a B.S. in Mechanical Engineering and a minor in Computer Science. 
-          Through various projects related to robotics during my undergrad, I gained knowledge and experience in path planning and controlling for a differential drive mobile robot. 
-          I also designed a robotic arm and applied deep learning algorithms.
-          I am a Masters in Robotics student at Northwestern University. My main interests are in SLAM, machine learning, and computer vision.</p>
-        <a href="img/Jihai_CV.pdf" class="btn btn-lg btn-outline">
-          <i class="fa fa-download"></i> Resume
-        </a>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </section>

@@ -1,35 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 {% include head.html %}
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        processEscapes: true
-      }
-    });
-    </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-  type="text/javascript"></script>
+<body id="top">
+  <a class="skip" href="#about">Skip to content</a>
 
-<body id="page-top" class="index">
-  {% include nav.html %}
-  {% include header.html %}
-  {% include portfolio_grid.html %}
-  {% include about.html %}
+  <div class="layout">
+    {% include side.html %}
 
-  <!-- {% if site.contact == "static" %}
-  {% include contact_static.html %}
-  {% elsif site.contact == "disqus" %}
-  {% include contact_disqus.html %}
-  {% else %}
-  {% include contact.html %}
-  {% endif %}
+    <main class="main" id="main">
+      {% include about.html %}
+      {% include experience.html %}
+      {% include projects.html %}
+      {% include footer.html %}
+    </main>
+  </div>
 
-  {% include modals.html %}
-  {% include js.html %} -->
-  
-  {% include footer.html %}
+  <script src="/js/main.js" defer></script>
 </body>
-
 </html>
