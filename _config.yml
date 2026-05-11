@@ -33,16 +33,28 @@ skills:
   - group: Hardware
     items: [SolidWorks, Onshape, 3D Printing]
 
-# Experience timeline
+# Experience timeline (newest first). logo: path under site root; icon: Font Awesome class for roles without a mark.
 experience:
-  - role: MS in Robotics
+  - role: Robotics Software Engineer
+    org: Stealth startup
+    period: Jan 2025 — Dec 2025
+    detail: Fine-tuned VLA models (pi0 family) for dual xArm7 manipulation; built synthetic data pipelines with SAM2 / CUTIE; improved diffusion policies with segmentation cues; real-time perception with FoundationPose and Grounded-SAM for precise grasping.
+    icon: fa-solid fa-building-shield
+  - role: Robotics Software Engineer Intern
+    org: Realman Robotics
+    period: Jun 2024 — Sept 2024
+    detail: Implemented a real-time S-curve velocity planner in C++ for smoother motion; stereo self-calibration with spherical trajectories and least-squares kinematic refinement, reducing absolute positioning error by ~40% in the target workspace.
+    icon: fa-solid fa-robot
+  - role: M.S. in Robotics
     org: Northwestern University
-    period: 2023 — 2025
+    period: Sept 2023 — Dec 2024
     detail: Coursework and research in SLAM, manipulation, machine learning, and computer vision.
+    logo: /img/experience/northwestern.svg
   - role: B.S. Mechanical Engineering, Minor in CS
     org: The Ohio State University
-    period: 2019 — 2023
+    period: Sep 2019 — May 2023
     detail: Path planning and control for mobile robots; robotic arm design; deep learning for perception.
+    logo: /img/experience/ohio-state.svg
 
 # Project summaries (keyed by post 'link' field)
 project_summaries:

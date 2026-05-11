@@ -3,10 +3,19 @@
   <ol class="timeline">
     {% for e in site.experience %}
     <li class="timeline-item">
-      <div class="timeline-period">{{ e.period }}</div>
-      <div class="timeline-body">
-        <h3 class="timeline-role">{{ e.role }} <span class="timeline-org">· {{ e.org }}</span></h3>
-        <p class="timeline-detail">{{ e.detail }}</p>
+      <div class="timeline-logo-cell">
+        {% if e.logo %}
+        <img class="timeline-logo" src="{{ e.logo }}" alt="" width="48" height="48" loading="lazy">
+        {% elsif e.icon %}
+        <span class="timeline-logo timeline-logo--icon"><i class="{{ e.icon }}" aria-hidden="true"></i></span>
+        {% endif %}
+      </div>
+      <div class="timeline-main">
+        <div class="timeline-period">{{ e.period }}</div>
+        <div class="timeline-body">
+          <h3 class="timeline-role">{{ e.role }} <span class="timeline-org">· {{ e.org }}</span></h3>
+          <p class="timeline-detail">{{ e.detail }}</p>
+        </div>
       </div>
     </li>
     {% endfor %}
