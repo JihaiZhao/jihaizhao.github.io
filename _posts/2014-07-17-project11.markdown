@@ -6,7 +6,7 @@ short-caption: Impedance Control
 date: 2024-4-1
 img: impedance.gif
 project-date: 2024-4-1
-category: Computer Vision, Inverse Kinematics
+category: Impedance control, Compliant manipulation, Franka Emika
 github: https://github.com/JihaiZhao/Botrista
 link: Impedance_Control
 description: 
