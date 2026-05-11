@@ -32,6 +32,7 @@ experience:
     period: Jan 2025 — Dec 2025
     detail: Fine-tuned VLA models (pi0 family) for dual xArm7 manipulation; built synthetic data pipelines with SAM2 / CUTIE; improved diffusion policies with segmentation cues; real-time perception with FoundationPose and Grounded-SAM for precise grasping.
     logo: /img/stealth.jpeg
+    href: /linked_posts/Stealth.html
   - role: M.S. in Robotics
     org: Northwestern University
     period: Sept 2023 — Dec 2024

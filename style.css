@@ -375,6 +375,26 @@ a:hover { color: var(--accent); }
   gap: 20px 28px;
   align-items: start;
 }
+.timeline-link {
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: -10px -12px;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.timeline-link:hover {
+  background: var(--bg-soft);
+  transform: translate(-1px, -1px);
+}
+.timeline-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.timeline-link:hover .timeline-role,
+.timeline-link:hover .timeline-org {
+  color: var(--accent-hover);
+}
 .timeline-period {
   font-family: var(--font-mono);
   font-size: 12px;
