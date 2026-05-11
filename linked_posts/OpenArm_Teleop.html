@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenArm Master–Slave Teleoperation (ongoing)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/posts.css?v=20260514">
+</head>
+<body>
+<nav class="post-topbar">
+    <a class="back-link" href="/#projects"><i class="fa fa-arrow-left"></i><span>Back to projects</span></a>
+</nav>
+
+<h1 class="title">OpenArm Master–Slave Teleoperation (ongoing)</h1>
+
+<hr class="para-break" data-content="  Overview  ">
+
+<p>I engineered a low-cost, high-fidelity <strong>master–slave teleoperation</strong> system for robotic imitation learning, built on the <strong>OpenArm</strong> open-source platform. I custom-designed a <strong>master arm</strong> using <strong>Dynamixel</strong> actuators to capture precise human demonstrations, then extended the stack with <strong>VR teleoperation</strong>: 6‑DoF controller inputs are mapped to the slave over <strong>ROS 2</strong> for intuitive data collection in diverse environments.</p>
+
+<p>To turn this hardware into a complete autonomous pipeline, I <strong>log synchronized multi-modal data</strong> (RGB streams and joint states), <strong>train Diffusion / VLA policies with LeRobot</strong>, and run an <strong>end-to-end deployment</strong> path from teleop to on-robot policy execution. <strong>Isaac Sim</strong> complements the physical rig with <strong>VR teleop and dataset collection</strong> when iterating on pipelines or collecting data without the full hardware stack.</p>
+
+<hr class="para-break" data-content="  Scope  ">
+
+<ul>
+    <li><strong>Hardware:</strong> OpenArm-based slave; custom Dynamixel master; optional VR layer for demonstration capture.</li>
+    <li><strong>Software:</strong> ROS 2 integration; synchronized vision + proprioception logging.</li>
+    <li><strong>Learning:</strong> LeRobot; Diffusion Policy / VLA training; deployment to the slave arm.</li>
+    <li><strong>Simulation:</strong> Isaac Sim for VR teleoperation and data collection alongside real-world runs.</li>
+</ul>
+
+<hr class="para-break" data-content="  Status  ">
+
+<p><em>Media, figures, and repository links will be added as the project matures.</em></p>
+
+</body>
+</html>

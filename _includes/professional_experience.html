@@ -1,0 +1,24 @@
+<section id="professional" class="section pro-exp">
+  <h2 class="section-title"><span class="num">03.</span> {{ site.professional_experience.title }}</h2>
+  <div class="pro-exp-card">
+    <div class="pro-exp-head">
+      {% if site.professional_experience.icon %}
+      <span class="pro-exp-icon" aria-hidden="true"><i class="{{ site.professional_experience.icon }}"></i></span>
+      {% endif %}
+      <div class="pro-exp-meta">
+        <p class="pro-exp-period">{{ site.professional_experience.period }}</p>
+        <h3 class="pro-exp-role">{{ site.professional_experience.role }} <span class="pro-exp-org">· {{ site.professional_experience.org }}</span></h3>
+      </div>
+    </div>
+    <div class="pro-exp-body about-body">
+      {{ site.professional_experience.intro | markdownify }}
+    </div>
+    {% if site.professional_experience.bullets %}
+    <ul class="pro-exp-bullets">
+      {% for b in site.professional_experience.bullets %}
+      <li>{{ b }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>

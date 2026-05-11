@@ -43,6 +43,25 @@ experience:
     detail: Path planning and control for mobile robots; robotic arm design; deep learning for perception.
     logo: /img/O.jpeg
 
+# Long-form Stealth role (before Projects). Timeline above keeps a short summary.
+professional_experience:
+  title: Professional experience
+  role: Robotics Software Engineer
+  org: Stealth startup
+  period: Jan 2025 — Dec 2025
+  icon: fa-solid fa-building-shield
+  intro: |
+    At a **stealth robotics startup**, I focused on **vision–language–action (VLA)** models and **diffusion policies** for **dual xArm7** manipulation—closing the loop from data to reliable long-horizon behaviors on hardware.
+
+    I **fine-tuned** modern VLA families (including **pi0 / pi0.5**-class models) for our bimanual setup, and built **synthetic data** tooling that uses **SAM2** and **CUTIE**-style mask tracking to augment real trajectories. I also improved **diffusion policies** by conditioning on **segmentation targets**, which lifted success on contact-rich pick-and-place.
+
+    On perception, I integrated **FoundationPose** and **Grounded-SAM** into a **real-time stack** aimed at **sub-centimeter 6D** grasping under clutter—bridging rough scene understanding with precise end-effector goals.
+  bullets:
+    - "VLA fine-tuning (pi0-class) for dual xArm7 long-horizon tasks"
+    - "Synthetic data pipelines with SAM2 / CUTIE-style mask tracking"
+    - "Diffusion policies with segmentation-aware targets for pick-and-place"
+    - "Real-time perception with FoundationPose + Grounded-SAM for precise 6D grasping"
+
 # Project summaries (keyed by post 'link' field)
 project_summaries:
   Ergodic: "Leveraged ergodic imitation to learn from both positive and negative demonstrations. Built a haptic-guided teleoperation rig where one 7-DoF Franka in impedance mode is mirrored by a second Franka, then trained robust task models with the ergodic metric — a measure of information content in motion."
@@ -54,6 +73,7 @@ project_summaries:
   Jack_In_Box: "Simulated a jack bouncing inside a moving box from first principles. Derived configuration frames and Lagrangian dynamics, then integrated the equations of motion over a 10 s horizon at a 0.01 s timestep, capturing collision and contact behavior."
   Robot_Pen_Stealer: "Tracked a purple pen in 3D with an Intel RealSense depth camera and commanded an Interbotix arm via the xs toolbox to grasp it in real time. Inverse kinematics maps the live target pose to joint commands for closed-loop pursuit."
   RRT: "Implemented Rapidly-Exploring Random Trees for path planning from scratch — tree growth, collision checking, and goal biasing — and demonstrated the algorithm on multi-obstacle 2D maps with both basic and goal-biased variants."
+  OpenArm_Teleop: "Low-cost, high-fidelity master–slave teleoperation on the OpenArm platform for imitation learning: a custom Dynamixel master and VR teleop (6‑DoF over ROS 2), synchronized RGB + joint logging, LeRobot Diffusion/VLA training, and full deploy. Isaac Sim complements hardware with VR teleoperation and dataset collection."
 
 # Social
 social:

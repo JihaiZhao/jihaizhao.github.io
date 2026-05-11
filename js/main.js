@@ -1,5 +1,5 @@
 (() => {
-  const sections = ['about', 'experience', 'projects']
+  const sections = ['about', 'experience', 'professional', 'projects']
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
