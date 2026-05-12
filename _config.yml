@@ -3,7 +3,7 @@ title: Jihai Zhao
 tagline: Robotics Engineer
 email: jihai518@gmail.com
 url: https://jihaizhao.github.io
-description: "Jihai Zhao — Robotics Engineer. Northwestern M.S. · SLAM, vision, manipulation."
+description: "Jihai Zhao — Robotics engineer. Northwestern University, The Ohio State University. Manipulation, perception, robot learning."
 keywords: "robotics, SLAM, computer vision, manipulation, ROS, Northwestern"
 meta_author: Jihai Zhao
 
@@ -11,13 +11,12 @@ meta_author: Jihai Zhao
 hero:
   name: Jihai Zhao
   role: Robotics Engineer
-  blurb: M.S. Robotics, Northwestern · perception, planning, and manipulation — SLAM, CV, dexterous systems.
+  blurb: I'm a robotics engineer with a mechanical-engineering background. I studied robotics at Northwestern University—building learning and perception that runs on real manipulators.
 
 about: |
-  B.S. Mechanical Engineering with a CS minor, <strong>Ohio State</strong>; M.S. Robotics, <strong>Northwestern</strong>.
-  I work on mobile and manipulator systems — path planning and control, arm design, and learning-based perception.
+  I'm a robotics engineer with a mechanical-engineering background; I like turning ideas into systems that still work when physics, sensors, and deadlines disagree.
 
-  My focus is <strong>SLAM</strong>, <strong>machine learning</strong>, and <strong>computer vision</strong> for real hardware.
+  I earned my M.S. in Robotics from **Northwestern University** and my B.S. with honors in Mechanical Engineering with a Computer Science minor from **The Ohio State University**. Most recently I was a robotics software engineer at a **stealth startup**, shipping VLA and diffusion-policy stacks and real-time perception for dual-arm manipulation on hardware.
 
 # Resume link gets ?v=<build unix time> so browsers/CDNs fetch a new copy after each deploy.
 resume_url: img/Jihai_CV.pdf
