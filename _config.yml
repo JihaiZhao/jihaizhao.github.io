@@ -3,7 +3,7 @@ title: Jihai Zhao
 tagline: Robotics Engineer
 email: jihai518@gmail.com
 url: https://jihaizhao.github.io
-description: "Jihai Zhao — Robotics Engineer. MS Robotics @ Northwestern. SLAM, manipulation, computer vision."
+description: "Jihai Zhao — Robotics Engineer. Northwestern M.S. · SLAM, vision, manipulation."
 keywords: "robotics, SLAM, computer vision, manipulation, ROS, Northwestern"
 meta_author: Jihai Zhao
 
@@ -11,15 +11,13 @@ meta_author: Jihai Zhao
 hero:
   name: Jihai Zhao
   role: Robotics Engineer
-  blurb: MS Robotics @ Northwestern. I build robots that perceive, plan, and manipulate — SLAM, computer vision, and dexterous manipulation.
+  blurb: M.S. Robotics, Northwestern · perception, planning, and manipulation — SLAM, CV, dexterous systems.
 
 about: |
-  I graduated from <strong>Ohio State University</strong> in 2023 with a B.S. in Mechanical Engineering and a minor in Computer Science.
-  Through robotics projects in undergrad I picked up path planning and control for differential-drive mobile robots,
-  designed a robotic arm, and applied deep learning algorithms to perception tasks.
+  B.S. Mechanical Engineering with a CS minor, <strong>Ohio State</strong>; M.S. Robotics, <strong>Northwestern</strong>.
+  I work on mobile and manipulator systems — path planning and control, arm design, and learning-based perception.
 
-  I'm currently a Master's student in Robotics at <strong>Northwestern University</strong>.
-  My main interests are <strong>SLAM</strong>, <strong>machine learning</strong>, and <strong>computer vision</strong>.
+  My focus is <strong>SLAM</strong>, <strong>machine learning</strong>, and <strong>computer vision</strong> for real hardware.
 
 # Resume link gets ?v=<build unix time> so browsers/CDNs fetch a new copy after each deploy.
 resume_url: img/Jihai_CV.pdf
